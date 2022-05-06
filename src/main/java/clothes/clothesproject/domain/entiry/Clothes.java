@@ -1,4 +1,4 @@
-package clothes.clothesproject.entiry;
+package clothes.clothesproject.domain.entiry;
 
 import lombok.Getter;
 

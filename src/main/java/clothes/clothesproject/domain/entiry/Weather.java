@@ -1,4 +1,4 @@
-package clothes.clothesproject.entiry;
+package clothes.clothesproject.domain.entiry;
 
 import lombok.Getter;
 
@@ -8,14 +8,9 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-public class Member {
-
+public class Weather {
     @Id @GeneratedValue
     private Long id;
 
-    private String loginId;
-    private String password;
-    private String name;
-    private String color;
-
+    private Long temperature;
 }

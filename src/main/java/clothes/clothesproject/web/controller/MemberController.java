@@ -1,4 +1,4 @@
-package clothes.clothesproject.controller;
+package clothes.clothesproject.web.controller;
 
 import org.springframework.stereotype.Controller;
 

@@ -1,4 +1,4 @@
-package clothes.clothesproject.service;
+package clothes.clothesproject.domain.service;
 
 import org.springframework.stereotype.Service;
 

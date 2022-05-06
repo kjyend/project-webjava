@@ -1,4 +1,4 @@
-package clothes.clothesproject.repository;
+package clothes.clothesproject.domain.repository;
 
 import org.springframework.stereotype.Repository;
 

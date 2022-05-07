@@ -16,6 +16,21 @@ public class Member {
     private String loginId;
     private String password;
     private String name;
-    private String color;
+    private String dob;
+    
+    private String color;//선호하는 색
+    private String temp;//선호하는 온도
 
+    public Member() {
+    }
+
+    public Member(Long id, String loginId, String password, String name, String dob, String color, String temp) {
+        this.id = id;
+        this.loginId = loginId;
+        this.password = password;
+        this.name = name;
+        this.dob = dob;
+        this.color = color;
+        this.temp = temp;
+    }
 }

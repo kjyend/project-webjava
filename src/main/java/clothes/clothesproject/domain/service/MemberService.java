@@ -12,10 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService {
 
-    @Autowired
-    MemberRepository memberRepository;
+    private
 
-    public void save(MemberDto memberDto){
-        //memberDto를 이용한 로그인
+    @Autowired MemberRepository memberRepository;
+
+
+    public void save(Long id,String login,String name,String dob){
+        //memberDto를 이용한 로그인 타입 오류?
     }
 }

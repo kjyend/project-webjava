@@ -21,13 +21,5 @@ public class Member {
     private String color;//선호하는 색
     private String temp;//선호하는 온도
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", loginId='" + loginId + '\'' +
-                ", name='" + name + '\'' +
-                ", dob='" + dob + '\'' +
-                '}';
-    }
+
 }

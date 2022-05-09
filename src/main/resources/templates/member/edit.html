@@ -2,9 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>edit</title>
 </head>
 <body>
-
+<div class="navbar navbar-dark bg-dark">
+    <div class="container-md">
+        <a class="navbar-brand" th:onclick="|location.href='@{/}'|">running</a>
+        <form th:action="@{/logout}" method="post">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" th:onclick="|location.href='login.html'|" type="submit">sign out</button>
+            </div>
+        </form>
+    </div>
+</div>
+1
 </body>
 </html>

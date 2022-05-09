@@ -1,20 +1,22 @@
 package clothes.clothesproject.domain.dto;
 
+import clothes.clothesproject.domain.entiry.Member;
 import lombok.Getter;
 
 @Getter
 public class MemberDto {
-    private Long id;
+    private Long memberId;
 
-    private String loginId;
-    private String name;
-    private String dob;
+    private String memberLoginId;
+    private String memberName;
+    private String memberDob;
 
-    public MemberDto(Long id, String loginId, String name, String dob) {
-        this.id = id;
-        this.loginId = loginId;
-        this.name = name;
-        this.dob = dob;
+    public MemberDto fromEntity(Member member) {
+        memberId=member.getId();
+        memberLoginId=member.getLoginId();
+        memberName=member.getName();
+        memberDob=member.getDob();
+        return null;
     }
 
 }

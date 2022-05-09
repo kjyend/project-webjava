@@ -12,5 +12,6 @@ public class Weather {
     @Id @GeneratedValue
     private Long id;
 
+    private String weather;
     private Long temperature;
 }

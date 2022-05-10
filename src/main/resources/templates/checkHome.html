@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>home</title>
+    <style>
+
+        .button-top{
+            width: 600px;
+            margin: 250px auto;
+        }
+    </style>
 </head>
 <div class="navbar navbar-dark bg-dark">
     <div class="container-md">
@@ -15,6 +22,10 @@
         </form>
     </div>
 </div>
-6
+<div class="button-top">
+    <button class="w-25 btn btn-primary" th:onclick="|location.href='@{/edit}'|" type="button">선호 옷,색 설정</button>
+    <button class="w-25 btn btn-primary" th:onclick="|location.href='@{/weather}'|" type="button">날씨</button>
+    <button class="w-25 btn btn-primary " th:onclick="|location.href='@{/area}'|" type="button">지역 설정</button>
+</div>
 </body>
 </html>

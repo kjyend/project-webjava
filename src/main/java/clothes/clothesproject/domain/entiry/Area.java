@@ -8,11 +8,11 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-public class Clothes {
+public class Area {
 
     @Id @GeneratedValue
     private Long id;
 
-    private String top;
-    private String pants;
+    private String province;//도
+    private String city;//시
 }

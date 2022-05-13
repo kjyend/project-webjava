@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MemberController {
 
     @GetMapping("/edit")
-    public String editForm(@Login Member loginMember, Model model){
+    public String editForm(@Login Member loginMember){
         return "member/edit";
     }
 //    @PostMapping("/edit")

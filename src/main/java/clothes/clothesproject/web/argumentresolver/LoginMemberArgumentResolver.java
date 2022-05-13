@@ -11,14 +11,13 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-@Slf4j
+
 public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
 
         boolean hasLoginAnnotation = parameter.hasParameterAnnotation(Login.class);
         boolean hasMemberType = Member.class.isAssignableFrom(parameter.getParameterType());
-        log.info("111");
         return hasLoginAnnotation && hasMemberType;
     }
 

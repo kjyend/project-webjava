@@ -24,7 +24,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private final MemberService memberService; //생성자 조회해야한다.
+    private final MemberService memberService;
     private final LoginService loginService;
 
     @GetMapping("/login")

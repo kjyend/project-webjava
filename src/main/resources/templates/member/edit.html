@@ -22,22 +22,25 @@
     </div>
 </div>
 <div class="button-mid">
-    <select id="temp" aria-label="온도">
-        <option value>온도</option>
-        <option value="1">~4&#176;</option>
-        <option value="2">5&#176;~8&#176;</option>
-        <option value="3">9&#176;~11&#176;</option>
-        <option value="4">12&#176;~16&#176;</option>
-        <option value="5">17&#176;~19&#176;</option>
-        <option value="6">20&#176;~22&#176;</option>
-        <option value="7">23&#176;~27&#176;</option>
-        <option value="8">28&#176;~</option>
-    </select>
-    <input type="text" placeholder="Default input">
-    <input type="text" placeholder="Default input">
-    <input type="text" placeholder="Default input">
-    <input type="text" placeholder="Default input">
-    <button class="btn btn-primary" type="submit">Button</button>
+    <form action="" th:object="${member}" method="post">
+        <select id="temp" aria-label="온도" th:field="*{temp}">
+            <option value="temp">온도</option>
+            <option value="1">~4&#176;</option>
+            <option value="2">5&#176;~8&#176;</option>
+            <option value="3">9&#176;~11&#176;</option>
+            <option value="4">12&#176;~16&#176;</option>
+            <option value="5">17&#176;~19&#176;</option>
+            <option value="6">20&#176;~22&#176;</option>
+            <option value="7">23&#176;~27&#176;</option>
+            <option value="8">28&#176;~</option>
+        </select>
+        <input type="text" placeholder="옷1">
+        <input type="text" placeholder="옷2">
+        <input type="text" placeholder="옷3">
+        <input type="text" placeholder="옷4">
+        <button type="submit" class="btn btn-group-sm btn-primary">측정</button>
+    </form>
+    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/}'|" >취소</button>
 </div>
 </body>
 </html>

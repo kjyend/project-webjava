@@ -13,8 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService {
 
-
-    @Autowired MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public void save(Member member){
         //memberDto를 이용한 로그인 타입 오류?

@@ -26,7 +26,9 @@ public class Member {
     private String dob;
     
     private String color;//선호하는 색
-    private String temp;//선호하는 온도
+
+    @Column
+    private Long temp;//온도
 
     private String top;// 선호 상의
     private String pants; // 선호 하의

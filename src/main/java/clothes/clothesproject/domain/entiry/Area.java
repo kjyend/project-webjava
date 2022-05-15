@@ -13,6 +13,6 @@ public class Area {
     @Id @GeneratedValue
     private Long id;
 
-    private String province;//도
-    private String city;//시
+    private String city;
+    private String county;
 }

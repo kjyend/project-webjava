@@ -31,5 +31,5 @@ public class Member {
     private Long temp;//온도
 
     private String top;// 선호 상의
-    private String pants; // 선호 하의
+    private String pants; // 선호 하의 온도랑 연동
 }

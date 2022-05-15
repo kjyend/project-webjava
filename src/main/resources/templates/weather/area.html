@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>clothes</title>
+    <style>
+        .button-mid{
+            width: 600px;
+            margin: 250px auto;
+        }
+    </style>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark">
@@ -16,6 +22,22 @@
         </form>
     </div>
 </div>
-
+<div class="button-mid">
+    <form>
+        <select>
+            <option id="city" value="">시/도</option>
+        </select>
+        <select>
+            <option id="count" value="">시/군/구</option>
+        </select>
+        <select>
+            <option id="town" value="">읍/면/동</option>
+        </select>
+        <button type="submit" class="btn btn-primary">변경하기</button>
+    </form>
+    <div>
+        <button class="btn btn-primary" th:onclick="|location.href='@{/}'|">취소</button>
+    </div>
+</div>
 </body>
 </html>

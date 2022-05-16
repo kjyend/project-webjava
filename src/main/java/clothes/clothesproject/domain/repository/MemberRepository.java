@@ -30,9 +30,4 @@ public class MemberRepository{
         return em.createQuery("select m from Member m",Member.class).getResultList();
     }
 
-    // 메서드 하나 생성할것 쿼리날릴걸로 createQuery
-    public Member findOne(Long member_id) {
-        return em.find(Member.class, member_id);
-    }
-
 }

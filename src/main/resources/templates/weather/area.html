@@ -23,9 +23,9 @@
     </div>
 </div>
 <div class="button-mid">
-    <form>
-        <select>
-            <option id="city" value="">시/도</option>
+    <form action="" th:object="${area}" method="post">
+        <select th:field="*{city}">
+            <option id="city" value="" >시/도</option>
         </select>
         <select>
             <option id="count" value="">시/군/구</option>

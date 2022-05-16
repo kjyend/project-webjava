@@ -4,7 +4,7 @@ import clothes.clothesproject.domain.service.MemberService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +16,16 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/edit")
-    public String editForm(@Login @ModelAttribute("member") Member member){
+    public String editForm(@Login Member loginMember,@ModelAttribute("member") Member member){
+        if(loginMember==null){
+            return "redirect:/";
+        }
         return "member/edit";
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute Member member){
-        memberService.save(member);// <>,<>로 받아야 받아야한다.
-        return "redirect:/";
+    public String edit(@ModelAttribute("member") Member member){
+//        memberService.save(member);// <>,<>로 받아야 받아야한다.
+        return "checkHome";
     }
 }

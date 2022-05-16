@@ -15,4 +15,5 @@ public class Area {
 
     private String city;
     private String county;
+    private String town;
 }

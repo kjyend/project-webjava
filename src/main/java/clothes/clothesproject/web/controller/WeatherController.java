@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WeatherController {
+
+
     @GetMapping("/weather")
     public String weatherForm(@Login Member loginMember, Weather weather){
         if(loginMember==null){

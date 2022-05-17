@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AreaController {
+
     @GetMapping("/area")
     public String clothesForm(@Login Member loginMember,@ModelAttribute("area") Area area){
         if(loginMember==null){
@@ -17,8 +18,12 @@ public class AreaController {
         }
         return "weather/area";
     }
+
     @PostMapping("/area")
     public String clothes(@ModelAttribute Area area){
+
+
+
         return "redirect:/";
     }
 }

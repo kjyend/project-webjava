@@ -23,11 +23,11 @@ public class Member {
     private String dob;
 
     @OneToOne(mappedBy = "member")
-    private Weather memberWeather;//온도
+    private Weather weather;//온도
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id")
-    private Area memberArea;
+    private Area area;
 
     private String top;// 선호 상의
     private String pants; // 선호 하의 온도랑 연동

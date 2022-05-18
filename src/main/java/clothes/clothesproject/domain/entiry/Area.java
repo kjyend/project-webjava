@@ -19,9 +19,9 @@ public class Area {
     private String town;
 
     @OneToOne(mappedBy = "area")
-    private Member areaMember; // member와 연동
+    private Member member; // member와 연동
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "weather_id")
-    private Weather areaWeather;
+    private Weather weather;
 }

@@ -22,8 +22,6 @@ public class AreaController {
     @PostMapping("/area")
     public String clothes(@ModelAttribute Area area){
 
-
-
         return "redirect:/";
     }
 }

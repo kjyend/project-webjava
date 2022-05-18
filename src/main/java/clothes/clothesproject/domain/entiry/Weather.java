@@ -16,9 +16,9 @@ public class Weather {
     private Long temperature; //온도+지역+회원도 있어야한다.
 
     @OneToOne(mappedBy = "weather")
-    private Area weatherArea;
+    private Area area;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member weatherMember;
+    private Member member;
 }

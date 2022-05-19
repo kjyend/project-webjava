@@ -22,12 +22,6 @@ public class Member {
     @Column
     private String dob;
 
-    @OneToOne(mappedBy = "member")
-    private Weather weather;//온도
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "area_id")
-    private Area area;
 
     private String top;// 선호 상의
     private String pants; // 선호 하의 온도랑 연동

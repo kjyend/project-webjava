@@ -18,10 +18,4 @@ public class Area {
     @Column
     private String town;
 
-    @OneToOne(mappedBy = "area")
-    private Member member; // member와 연동
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "weather_id")
-    private Weather weather;
 }

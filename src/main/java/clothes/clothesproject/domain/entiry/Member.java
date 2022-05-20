@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
+@Setter //다 만들고 지워야한다.
 public class Member {
 
     @Id @GeneratedValue
@@ -22,8 +22,5 @@ public class Member {
     @Column
     private String dob;
 
-
-    private String top;// 선호 상의
-    private String pants; // 선호 하의 온도랑 연동
 
 }

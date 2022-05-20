@@ -15,6 +15,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -35,18 +38,23 @@ public class WeatherService {
             getVilageFcst 동네예보조회
             getFcstVersion 예보버전조회
         */
-        Date now=new Date();
+        Date now=new Date(); //날짜
         SimpleDateFormat frame=new SimpleDateFormat("yyyyMMdd");
         String days=frame.format(now);
 
-        String nx = "60";	//위도
-        String ny = "125";	//경도
+        LocalTime time=LocalTime.now(); // 시간 너무 빨라서 날씨 정보를 못받는 경우가 있다. 1시간전에 받아야한다.
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("HH00");
+        String nowTime=time.format(formatter);
+
+
+        String nx = "60";	//위도 : 나중에 입력 받아야한다.
+        String ny = "125";	//경도 : 나중에 입력 받아야한다.
         String baseDate = days;	//조회하고싶은 날짜
-        String baseTime = "0500";	//조회하고싶은 시간
+        String baseTime = nowTime;	//조회하고싶은 시간
 
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 
-        String serviceKey="인증키";
+        String serviceKey="SOLuYRh8xqz5eiyULHRGa7argcZ5hB4drsGC1LFh91Og5tZwMs4Jk34TctQelxAph%2BlwkFPoh%2F9oAcB0XM8PHQ%3D%3D";
 
         StringBuilder urlBuilder = new StringBuilder(apiUrl);
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "="+serviceKey);

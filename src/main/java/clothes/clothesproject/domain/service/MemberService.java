@@ -17,7 +17,7 @@ public class MemberService {
         //memberDto를 이용한 로그인 타입 오류
         memberRepository.save(member);
     }
-    public void clothesSave(Member member){//온도에 따른 옷 변환 service
+    public void clothesSave(Member member){//온도에 따른 옷 설정 변환
 
     }
 

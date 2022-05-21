@@ -1,4 +1,5 @@
 package clothes.clothesproject.web.controller;
+import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.service.MemberService;
 import clothes.clothesproject.web.argumentresolver.Login;
@@ -16,7 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/edit")
-    public String editForm(@Login Member loginMember,@ModelAttribute("member") Member member){
+    public String editForm(@Login Member loginMember,@ModelAttribute("clothes") Clothes clothes){
         if(loginMember==null){
             return "redirect:/";
         }
@@ -24,8 +25,8 @@ public class MemberController {
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute("member") Member member){
+    public String edit(@ModelAttribute("clothes") Clothes clothes){
 //        memberService.save(member);// <>,<>로 받아야 받아야한다.
-        return "checkHome";
+        return "redirect:/edit";
     }
 }

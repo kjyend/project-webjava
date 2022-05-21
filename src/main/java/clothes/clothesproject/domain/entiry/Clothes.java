@@ -14,7 +14,11 @@ public class Clothes {
     private Long id;
 
     @Column
-    private String top;// 선호 상의
+    private String first;
     @Column
-    private String pants; // 선호 하의 온도랑 연동
+    private String second;
+    @Column
+    private String third;
+    @Column
+    private String fourth;
 }

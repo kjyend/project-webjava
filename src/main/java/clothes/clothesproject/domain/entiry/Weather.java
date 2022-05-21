@@ -13,6 +13,6 @@ public class Weather {
     @Column
     private String weatherArea; //날씨
     @Column
-    private Long temperature; //온도+지역+회원도 있어야한다.
+    private Long temperature; //온도
 
 }

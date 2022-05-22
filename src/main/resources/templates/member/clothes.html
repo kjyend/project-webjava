@@ -34,13 +34,13 @@
             <option value="7">23&#176;~27&#176;</option>
             <option value="8">28&#176;~</option>
         </select>
-        <input type="text" placeholder="옷1">
-        <input type="text" placeholder="옷2">
-        <input type="text" placeholder="옷3">
-        <input type="text" placeholder="옷4">
+        <input type="text" placeholder="옷1" th:field="*{firstclothes}">
+        <input type="text" placeholder="옷2" th:field="*{secondclothes}">
+        <input type="text" placeholder="옷3" th:field="*{thirdclothes}">
+        <input type="text" placeholder="옷4" th:field="*{fourthclothes}">
         <button type="submit" class="btn btn-group-sm btn-primary">측정</button>
+        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/}'|" >취소</button>
     </form>
-    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/}'|" >취소</button>
 </div>
 </body>
 </html>

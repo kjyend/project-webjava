@@ -1,32 +1,36 @@
 package clothes.clothesproject.web.controller;
 import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Member;
-import clothes.clothesproject.domain.service.MemberService;
+import clothes.clothesproject.domain.service.ClothesService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequiredArgsConstructor
-public class MemberController {
+@Slf4j
+public class ClothesController {
 
-    private final MemberService memberService;
+    private final ClothesService clothesService;
 
-    @GetMapping("/edit")
+    @GetMapping("/clothes")
     public String editForm(@Login Member loginMember,@ModelAttribute("clothes") Clothes clothes){
         if(loginMember==null){
             return "redirect:/";
         }
-        return "member/edit";
+        return "member/clothes";
     }
 
-    @PostMapping("/edit")
-    public String edit(@ModelAttribute("clothes") Clothes clothes){
-//        memberService.save(member);// <>,<>로 받아야 받아야한다.
-        return "redirect:/edit";
+    @PostMapping("/clothes")
+    public String edit(@ModelAttribute Clothes clothes){
+        log.info("=={}",clothes.getFirstclothes());
+        clothesService.save(clothes);
+        return "redirect:/clothes";
     }
 }

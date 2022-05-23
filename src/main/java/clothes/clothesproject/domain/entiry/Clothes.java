@@ -10,6 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 @Getter// @setter값이 없어서 값을 못받았다.
+@Setter
 public class Clothes {
     @Id @GeneratedValue
     private Long id;

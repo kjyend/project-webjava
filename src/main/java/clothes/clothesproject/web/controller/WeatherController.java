@@ -4,6 +4,7 @@ import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class WeatherController { //데이터값 html
 
 
@@ -34,10 +36,11 @@ public class WeatherController { //데이터값 html
         }
         model.addAttribute("model",jsonString());
         return "weather/weather";
+
     }
     public String jsonString() throws Exception {
          /*
-            @ API LIST ~
+            @ API LIST ~ 음 json으로 바꿀수도있다.
 
             getUltraSrtNcst 초단기실황조회
             getUltraSrtFcst 초단기예보조회
@@ -49,10 +52,9 @@ public class WeatherController { //데이터값 html
         String days=frame.format(now);
 
         SimpleDateFormat formatter=new SimpleDateFormat("HH00"); //1시간 전에 날씨를 받는다. 이유는 데이터가 없는 시간이 있어서
-        Date hour=new Date();
 
         Calendar time = Calendar.getInstance();
-        time.setTime(hour);
+        time.setTime(now);
         time.add(Calendar.HOUR,-3);
         String nowTime=formatter.format(time.getTime()).toString();
 
@@ -64,7 +66,7 @@ public class WeatherController { //데이터값 html
 
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 
-        String serviceKey="";
+        String serviceKey="SOLuYRh8xqz5eiyULHRGa7argcZ5hB4drsGC1LFh91Og5tZwMs4Jk34TctQelxAph%2BlwkFPoh%2F9oAcB0XM8PHQ%3D%3D";
 
         StringBuilder urlBuilder = new StringBuilder(apiUrl);
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "="+serviceKey);
@@ -80,6 +82,35 @@ public class WeatherController { //데이터값 html
         JSONObject jsonObj = new JSONObject();
 
         jsonObj.put("result", resultMap);
+
+//        JSONObject result= (JSONObject) jsonObj.get("result");
+//        JSONObject response= (JSONObject) result.get("response");
+//        //기상청의 데이터가 있는지 확인한다.
+//        JSONObject header= (JSONObject) response.get("header");
+//        JSONObject resultCode= (JSONObject) header.get("resultCode");
+//
+//        if(resultCode.toString() != "00"){ //데이터가 없는지 확인하고 없으면 nodata출력
+//            System.out.println("기상청에 데이터가 없습니다.");
+//            return "";
+//        }
+
+
+//        JSONObject body= (JSONObject) response.get("body");
+//        JSONObject items= (JSONObject) body.get("items");
+//        JSONArray item= (JSONArray) items.get("item");
+//// 파싱 배열 확인할것 nodata 받으면 if문으로 넣어서 시간 적게?
+//
+//        //온도 받는
+//        JSONObject itemArray1= (JSONObject) item.get(0); // 온도
+//        JSONObject tmp = (JSONObject) itemArray1.get("fcstValue");
+//
+//        //강수가 있는지 없는지
+//        JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
+//        JSONObject pcp= (JSONObject) itemArray2.get("fcstValue");
+//
+//        //하늘 상태
+//        JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
+//        JSONObject sky= (JSONObject) itemArray2.get("fcstValue");
 
         return jsonObj.toString();
     }

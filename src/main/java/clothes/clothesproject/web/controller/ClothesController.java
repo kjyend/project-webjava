@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class ClothesController {
 
     private final ClothesService clothesService;
@@ -28,7 +27,6 @@ public class ClothesController {
 
     @PostMapping("/clothes") //@Setter값이 없어서 값을 일단을 못받는다.
     public String edit(@ModelAttribute Clothes clothes){
-        log.info("=={}",clothes.getFirstclothes());
         clothesService.save(clothes);
         return "redirect:/clothes";
     }

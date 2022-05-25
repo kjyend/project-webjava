@@ -1,11 +1,14 @@
 package clothes.clothesproject.web.controller;
 
 import clothes.clothesproject.domain.entiry.Member;
+import clothes.clothesproject.domain.service.WeatherService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 
 @Controller
@@ -28,6 +29,9 @@ import java.util.HashMap;
 @Slf4j
 public class WeatherController { //데이터값 html
 
+    //weather 여기에서만 사용하는
+
+    private final WeatherService weatherService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
     public String weatherForm(@Login Member loginMember, Model model) throws Exception {
@@ -35,13 +39,12 @@ public class WeatherController { //데이터값 html
             return "redirect:/";
         }
         model.addAttribute("model",jsonString());
+        log.info("=={}",jsonString());
         return "weather/weather";
-
     }
     public String jsonString() throws Exception {
          /*
-            @ API LIST ~ 음 json으로 바꿀수도있다.
-
+            @ API LIST
             getUltraSrtNcst 초단기실황조회
             getUltraSrtFcst 초단기예보조회
             getVilageFcst 동네예보조회
@@ -55,12 +58,12 @@ public class WeatherController { //데이터값 html
 
         Calendar time = Calendar.getInstance();
         time.setTime(now);
-        time.add(Calendar.HOUR,-3);
+        time.add(Calendar.HOUR,-6);
         String nowTime=formatter.format(time.getTime()).toString();
 
 
         String nx = "60";	//위도 : 나중에 입력 받아야한다.
-        String ny = "125";	//경도 : 나중에 입력 받아야한다.
+        String ny = "127";	//경도 : 나중에 입력 받아야한다.
         String baseDate = days;	//조회하고싶은 날짜
         String baseTime = nowTime;	//조회하고싶은 시간
 
@@ -80,40 +83,48 @@ public class WeatherController { //데이터값 html
         HashMap<String, Object> resultMap = getDataFromJson(String.valueOf(urlBuilder), "UTF-8", "get", "");
 
         JSONObject jsonObj = new JSONObject();
+        JSONParser parser = new JSONParser();
+        String[] arr =new String[4];
 
         jsonObj.put("result", resultMap);
 
-//        JSONObject result= (JSONObject) jsonObj.get("result");
-//        JSONObject response= (JSONObject) result.get("response");
-//        //기상청의 데이터가 있는지 확인한다.
-//        JSONObject header= (JSONObject) response.get("header");
-//        JSONObject resultCode= (JSONObject) header.get("resultCode");
-//
-//        if(resultCode.toString() != "00"){ //데이터가 없는지 확인하고 없으면 nodata출력
-//            System.out.println("기상청에 데이터가 없습니다.");
-//            return "";
-//        }
+        //jsonobject를 객체로 바꾸기. 안하면 시간지남으로 인한 error
+        JSONObject jsonObject= (JSONObject) parser.parse(jsonObj.toString());
 
+        JSONObject result = (JSONObject) jsonObject.get("result");
+        JSONObject response= (JSONObject) result.get("response");
+        //기상청의 데이터가 있는지 확인한다.
+        JSONObject header= (JSONObject) response.get("header");
+        String resultCode= (String) header.get("resultCode");
 
-//        JSONObject body= (JSONObject) response.get("body");
-//        JSONObject items= (JSONObject) body.get("items");
-//        JSONArray item= (JSONArray) items.get("item");
-//// 파싱 배열 확인할것 nodata 받으면 if문으로 넣어서 시간 적게?
-//
-//        //온도 받는
-//        JSONObject itemArray1= (JSONObject) item.get(0); // 온도
-//        JSONObject tmp = (JSONObject) itemArray1.get("fcstValue");
-//
-//        //강수가 있는지 없는지
-//        JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
-//        JSONObject pcp= (JSONObject) itemArray2.get("fcstValue");
-//
-//        //하늘 상태
-//        JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
-//        JSONObject sky= (JSONObject) itemArray2.get("fcstValue");
+        if(!resultCode.equals("00")){ //resultCode값이 00이 아니면 if문 실행
+            return "기상청에 데이터가 없습니다.";
+        }
 
-        return jsonObj.toString();
+        JSONObject body= (JSONObject) response.get("body");
+        JSONObject items= (JSONObject) body.get("items");
+        JSONArray item= (JSONArray) items.get("item");
+//      파싱 배열 확인할것 nodata 받으면 if문으로 넣어서 시간 적게?
+
+        //온도 받는
+        JSONObject itemArray1= (JSONObject) item.get(0); // 온도
+        String tmp = (String) itemArray1.get("fcstValue");
+        arr[0]=tmp;
+
+        //강수가 있는지 없는지
+        JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
+        String pcp= (String) itemArray2.get("fcstValue");
+        arr[1]=pcp;
+
+        //하늘 상태
+        JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
+        String sky= (String) itemArray3.get("fcstValue");
+        arr[2]=sky;
+
+        return Arrays.toString(arr);
     }
+
+    //이거 풀생각해야한다.
     public HashMap<String, Object> getDataFromJson(String apiUrl, String encoding, String type, String jsonStr) throws Exception {
         boolean isPost = false;
 
@@ -180,5 +191,4 @@ public class WeatherController { //데이터값 html
 
         return resultMap;
     }
-
 }

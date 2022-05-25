@@ -11,8 +11,10 @@ public class Weather {
     private Long id;
 
     @Column
-    private String weatherArea; //날씨
-    @Column
     private Long temperature; //온도
+    @Column
+    private String pcp;//강수가 있는지
+    @Column
+    private String sky;//하늘 상태
 
 }

@@ -16,8 +16,13 @@ public class WeatherService {
 
     private final WeatherRepository weatherRepository;
 
-    public void save(Weather weather){//배열받는다.
+    public void save(Weather weather,String tmp,String pcp,String sky){//dto를 통해서 저장하는데
+        weather.setPcp(pcp);
+        weather.setSky(sky);
+        weather.setTemp(tmp);
         weatherRepository.save(weather);
     }
+
+
 
 }

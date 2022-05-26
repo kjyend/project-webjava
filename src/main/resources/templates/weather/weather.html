@@ -22,7 +22,12 @@
         </form>
     </div>
 </div>
-<div th:text="${model}">
+<div>
+    <form action="" th:object="${weather}">
+        <div th:text="*{pcp}"></div>
+        <div th:text="*{sky}"></div>
+        <div th:text="*{temp}"></div>
+    </form>
 </div>
 </body>
 </html>

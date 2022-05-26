@@ -1,6 +1,7 @@
 package clothes.clothesproject.web.controller;
 
 import clothes.clothesproject.domain.entiry.Member;
+import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.service.WeatherService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,16 +31,20 @@ import java.util.*;
 @Slf4j
 public class WeatherController { //데이터값 html
 
-    //weather 여기에서만 사용하는
-
+    //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
+    private String tmp; //온도
+    private String pcp; //강수 없음
+    private String sky; //하늘 상태
+    //dto 해야한다.
     private final WeatherService weatherService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login Member loginMember, Model model) throws Exception {
+    public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather) throws Exception {
         if (loginMember == null) {
             return "redirect:/";
         }
-        model.addAttribute("model",jsonString());
+//        model.addAttribute("model",jsonString()); //dto로 받아야한다.
+        weatherService.save(weather,tmp,pcp,sky);
         log.info("=={}",jsonString());
         return "weather/weather";
     }
@@ -84,7 +90,7 @@ public class WeatherController { //데이터값 html
 
         JSONObject jsonObj = new JSONObject();
         JSONParser parser = new JSONParser();
-        String[] arr =new String[4];
+//        String[] arr =new String[4];
 
         jsonObj.put("result", resultMap);
 
@@ -108,20 +114,20 @@ public class WeatherController { //데이터값 html
 
         //온도 받는
         JSONObject itemArray1= (JSONObject) item.get(0); // 온도
-        String tmp = (String) itemArray1.get("fcstValue");
-        arr[0]=tmp;
+        tmp = (String) itemArray1.get("fcstValue");
+//        arr[0]=tmp;
 
         //강수가 있는지 없는지
         JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
-        String pcp= (String) itemArray2.get("fcstValue");
-        arr[1]=pcp;
+        pcp= (String) itemArray2.get("fcstValue");
+//        arr[1]=pcp;
 
         //하늘 상태
         JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
-        String sky= (String) itemArray3.get("fcstValue");
-        arr[2]=sky;
+        sky= (String) itemArray3.get("fcstValue");
+//        arr[2]=sky;
 
-        return Arrays.toString(arr);
+        return sky;
     }
 
     //이거 풀생각해야한다.

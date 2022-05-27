@@ -19,4 +19,5 @@ public class Weather {
     @Column
     private String sky;//하늘 상태
 
+
 }

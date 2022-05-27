@@ -1,6 +1,5 @@
 package clothes.clothesproject.domain.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClothesDto {
+public class LoginDto {
 
-
-    private String firstclothes;
-    private String secondclothes;
-    private String thirdclothes;
-    private String fourthclothes;
-
+    private String memberLoginId;
+    private String memberPassword;
 }

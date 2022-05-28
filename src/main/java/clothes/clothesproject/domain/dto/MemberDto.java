@@ -8,19 +8,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignupDto {
+public class MemberDto extends Member { //dto를 봐야한다.;; 안되는경우가 login, signup
 
     private String memberLoginId;
     private String memberPassword;
     private String memberName;
     private String memberDob;
 
-    public SignupDto fromEntity(Member member) {
-        memberLoginId=member.getLoginId();
-        memberPassword=member.getPassword();
-        memberName=member.getName();
-        memberDob=member.getDob();
-        return null;
+    public MemberDto(String memberLoginId, String memberPassword){
+        this.memberLoginId=memberLoginId;
+        this.memberPassword=memberPassword;
     }
 
 }

@@ -34,22 +34,22 @@
     <form class="form-signin" action="" th:object="${member}" method="post">
         <div class="mb-3">
             <label for="loginId" class="form-label">id</label>
-            <input type="email" id="loginId" th:field="*{loginId}" class="form-control" th:errorclass="field-error">
-            <div class="field-error" th:errors="*{loginId}"/>
+            <input type="email" id="loginId" th:field="*{memberLoginId}" class="form-control" th:errorclass="field-error">
+            <div class="field-error" th:errors="*{memberLoginId}"/>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">password</label>
-            <input type="password" id="password" th:field="*{password}" class="form-control" th:errorclass="field-error">
+            <input type="password" id="password" th:field="*{memberPassword}" class="form-control" th:errorclass="field-error">
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">이름</label>
-            <input type="text" class="form-control" id="name" th:field="*{name}" th:errorclass="field-error">
-            <div class="field-error" th:error="*{name}"/>
+            <input type="text" class="form-control" id="name" th:field="*{memberName}" th:errorclass="field-error">
+            <div class="field-error" th:error="*{memberName}"/>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">생년월일</label>
-            <input type="text" class="form-control" id="DOB" th:field="*{dob}" th:errorclass="field-error" >
-            <div class="field-error" th:error="*{dob}"/>
+            <input type="text" class="form-control" id="DOB" th:field="*{memberDob}" th:errorclass="field-error" >
+            <div class="field-error" th:error="*{memberDob}"/>
         </div>
         <div class="margin-button">
             <button type="submit" class="w-100 btn btn-lg btn-primary">sign-up</button>

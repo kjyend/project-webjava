@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+
 public class MemberRepository{
-    @PersistenceContext
-    EntityManager em;
+
+    @PersistenceContext EntityManager em;
 
     public void save(Member member){ // 회원을 db에 저장한다.
         if(member.getId()==null) {

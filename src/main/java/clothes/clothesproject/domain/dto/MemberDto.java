@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberDto extends Member { //dto를 봐야한다.;; 안되는경우가 login, signup
+public class MemberDto { //dto를 봐야한다.;; 안되는경우가 login, signup
 
     private String memberLoginId;
     private String memberPassword;
@@ -20,4 +20,8 @@ public class MemberDto extends Member { //dto를 봐야한다.;; 안되는경우
         this.memberPassword=memberPassword;
     }
 
+    public MemberDto(Member member) {//로그인
+        this.memberLoginId=member.getLoginId();
+        this.memberPassword=member.getPassword();
+    }
 }

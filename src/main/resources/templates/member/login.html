@@ -41,12 +41,12 @@
     <form class="form-signin" action="" th:object="${member}" method="post">
         <div>
             <label for="loginId" class="form-label"></label>
-            <input type="email" class="form-control"  id="loginId" th:field="*{loginId}" aria-describedby="emailHelp" placeholder="id">
+            <input type="email" class="form-control"  id="loginId" th:field="*{memberLoginId}" aria-describedby="emailHelp" placeholder="id">
         </div>
         <div>
             <label for="password" class="form-label"></label>
-            <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="password" th:errorclass="field-error">
-            <div class="field-error" th:error="*{password}"/>
+            <input type="password" class="form-control" id="password" th:field="*{memberPassword}" placeholder="password" th:errorclass="field-error">
+            <div class="field-error" th:error="*{memberPassword}"/>
         </div>
         <div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">sign-in</button>

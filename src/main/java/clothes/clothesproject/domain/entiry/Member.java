@@ -1,13 +1,17 @@
 package clothes.clothesproject.domain.entiry;
 
+import clothes.clothesproject.domain.dto.MemberDto;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter //다 만들고 지워야한다.
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
     @Id @GeneratedValue
@@ -23,4 +27,8 @@ public class Member {
     private String dob;
 
 
+    public Member(MemberDto member) {
+        this.loginId=member.getMemberLoginId();
+        this.password=member.getMemberPassword();
+    }
 }

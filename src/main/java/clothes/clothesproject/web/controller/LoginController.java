@@ -34,7 +34,7 @@ public class LoginController {
         if(bindingResult.hasErrors()){
             return "member/login";
         }
-        MemberDto loginMember= (MemberDto) loginService.login(member.getMemberLoginId(),member.getMemberPassword());
+        MemberDto loginMember=loginService.login(member.getMemberLoginId(),member.getMemberPassword());
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");
@@ -55,7 +55,7 @@ public class LoginController {
         if(bindingResult.hasErrors()){
             return "member/signup";
         }
-        memberService.save(member);//나중에  memberdto로 받아야한다.
+        memberService.save(member);
         return "redirect:/";
     }
 

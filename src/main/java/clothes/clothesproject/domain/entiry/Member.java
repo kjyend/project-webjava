@@ -1,6 +1,5 @@
 package clothes.clothesproject.domain.entiry;
 
-import clothes.clothesproject.domain.dto.MemberDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class Member {
 
     @Id @GeneratedValue
@@ -27,8 +27,12 @@ public class Member {
     private String dob;
 
 
-    public Member(MemberDto member) {
-        this.loginId=member.getMemberLoginId();
-        this.password=member.getMemberPassword();
-    }
+
+//
+//    public Member(MemberDto member) {
+//        this.loginId=member.getLoginId();
+//        this.password=member.getPassword();
+//        this.name=member.getName();
+//        this.name=member.getDob();
+//    }
 }

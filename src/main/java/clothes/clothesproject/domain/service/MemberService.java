@@ -1,6 +1,6 @@
 package clothes.clothesproject.domain.service;
 
-import clothes.clothesproject.domain.dto.MemberDto;
+
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +16,9 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void save(MemberDto member){//login save
-        //memberDto를 이용한 로그인 타입 오류
-        log.info("={}",member.getMemberLoginId());
-        memberRepository.save(new Member(member));
+    public void save(Member member){//login 블로그 보고 dto에서 entity 넣는것해야한다.
+//        //memberDto를 이용한 로그인 타입 오류
+//        Member member=new Member(memberdto);
+        memberRepository.save(member);
     }
 }

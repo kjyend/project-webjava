@@ -43,9 +43,9 @@ public class WeatherController { //데이터값 html
         if (loginMember == null) {
             return "redirect:/";
         }
-//        model.addAttribute("model",jsonString()); //dto로 받아야한다.
-        weatherService.save(weather,tmp,pcp,sky);
-        log.info("=={}",jsonString());
+        if(jsonString().equals("00")){
+            weatherService.save(weather,tmp,pcp,sky);
+        }
         return "weather/weather";
     }
     public String jsonString() throws Exception {
@@ -64,14 +64,14 @@ public class WeatherController { //데이터값 html
 
         Calendar time = Calendar.getInstance();
         time.setTime(now);
-        time.add(Calendar.HOUR,-6);
+        time.add(Calendar.HOUR,-1);
         String nowTime=formatter.format(time.getTime()).toString();
 
 
         String nx = "60";	//위도 : 나중에 입력 받아야한다.
         String ny = "127";	//경도 : 나중에 입력 받아야한다.
         String baseDate = days;	//조회하고싶은 날짜
-        String baseTime = nowTime;	//조회하고싶은 시간
+        String baseTime = nowTime;	//조회하고싶은 시간 nowTime
 
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 
@@ -127,7 +127,7 @@ public class WeatherController { //데이터값 html
         sky= (String) itemArray3.get("fcstValue");
 //        arr[2]=sky;
 
-        return sky;
+        return "00";
     }
 
     //이거 풀생각해야한다.

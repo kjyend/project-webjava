@@ -9,8 +9,8 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor //생성자로 했는데 저장이 안된다.
+//@AllArgsConstructor
 @Setter
 public class Member {
 
@@ -25,7 +25,6 @@ public class Member {
     private String name;
     @Column
     private String dob;
-
 
 
 //

@@ -5,9 +5,12 @@
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <title>weather</title>
     <style>
+        /*   가운데 정렬 */
         .button-mid{
-            width: 600px;
-            margin: 250px auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
         }
     </style>
 </head>
@@ -22,8 +25,8 @@
         </form>
     </div>
 </div>
-<div>
-    <form action="" th:object="${weather}">
+<div class="button-mid">
+    <form  action="" th:object="${weather}">
         <div th:text="*{pcp}"></div>
         <div th:text="*{sky}"></div>
         <div th:text="*{temp}"></div>

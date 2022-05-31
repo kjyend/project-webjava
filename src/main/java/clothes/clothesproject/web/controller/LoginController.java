@@ -6,12 +6,11 @@ import clothes.clothesproject.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +20,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입하는데 비워있음
+    // 이거 일단 전부 Model로 받아서 확인을해야할거 같다. 그리고 setter없이 저장하기
 
     private final MemberService memberService;
     private final LoginService loginService;
@@ -48,17 +48,17 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
     }
 
     @GetMapping("/signup")
-    public String signupForm(@ModelAttribute("member") Member member){
+    public String signupForm(Member member, Model model){
+        model.addAttribute("member",member);
         return "member/signup";
     }
 
-    @PostMapping("/signup")
-    public String save(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult){//Member > MemberDto로 변경해야함
+    @PostMapping("/signup")//setter가 없어서 null로 저장된다.
+    public String save(@Validated @ModelAttribute Member member, BindingResult bindingResult){//Member > MemberDto로 변경해야함
         if(bindingResult.hasErrors()){
             return "member/signup";
         }
         memberService.save(member);
-        log.info("get.login={}",member.getLoginId());
         return "redirect:/";
     }
 

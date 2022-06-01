@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -53,8 +52,8 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
         return "member/signup";
     }
 
-    @PostMapping("/signup")//setter가 없어서 null로 저장된다.
-    public String save(@Validated @ModelAttribute Member member, BindingResult bindingResult){//Member > MemberDto로 변경해야함
+    @PostMapping("/signup")//setter가 없어서 null로 저장된다. setter가 있으면 그냥 저장이 된다. 지금 setter를 안함
+    public String save(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult){//Member > MemberDto로 변경해야함
         if(bindingResult.hasErrors()){
             return "member/signup";
         }

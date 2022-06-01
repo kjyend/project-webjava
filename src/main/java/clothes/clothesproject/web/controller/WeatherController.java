@@ -11,7 +11,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -64,7 +63,7 @@ public class WeatherController { //데이터값 html
 
         Calendar time = Calendar.getInstance();
         time.setTime(now);
-        time.add(Calendar.HOUR,-1);
+        time.add(Calendar.HOUR,-3);
         String nowTime=formatter.format(time.getTime()).toString();
 
 
@@ -90,7 +89,6 @@ public class WeatherController { //데이터값 html
 
         JSONObject jsonObj = new JSONObject();
         JSONParser parser = new JSONParser();
-//        String[] arr =new String[4];
 
         jsonObj.put("result", resultMap);
 
@@ -110,22 +108,15 @@ public class WeatherController { //데이터값 html
         JSONObject body= (JSONObject) response.get("body");
         JSONObject items= (JSONObject) body.get("items");
         JSONArray item= (JSONArray) items.get("item");
-//      파싱 배열 확인할것 nodata 받으면 if문으로 넣어서 시간 적게?
 
-        //온도 받는
         JSONObject itemArray1= (JSONObject) item.get(0); // 온도
         tmp = (String) itemArray1.get("fcstValue");
-//        arr[0]=tmp;
 
-        //강수가 있는지 없는지
         JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
         pcp= (String) itemArray2.get("fcstValue");
-//        arr[1]=pcp;
 
-        //하늘 상태
         JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
         sky= (String) itemArray3.get("fcstValue");
-//        arr[2]=sky;
 
         return "00";
     }

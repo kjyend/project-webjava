@@ -14,5 +14,4 @@ public class WeatherDto {
     private String pcp;//강수가 있는지
     private String sky;//하늘 상태
 
-
 }

@@ -1,14 +1,12 @@
 package clothes.clothesproject.domain.dto;
 
 import clothes.clothesproject.domain.entiry.Member;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @Builder
 public class MemberDto { //dto를 봐야한다.;; 안되는경우가 login, signup
 

@@ -1,5 +1,6 @@
 package clothes.clothesproject.domain.entiry;
 
+import clothes.clothesproject.domain.dto.MemberDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-//@NoArgsConstructor //생성자로 했는데 저장이 안된다.
+@NoArgsConstructor //생성자로 했는데 저장이 안된다.
 //@AllArgsConstructor
 @Setter
 public class Member {
@@ -27,11 +28,10 @@ public class Member {
     private String dob;
 
 
-//
-//    public Member(MemberDto member) {
-//        this.loginId=member.getLoginId();
-//        this.password=member.getPassword();
-//        this.name=member.getName();
-//        this.name=member.getDob();
-//    }
+    public Member(MemberDto member) {
+        this.loginId=member.getLoginId();
+        this.password=member.getPassword();
+        this.name=member.getName();
+        this.name=member.getDob();
+    }
 }

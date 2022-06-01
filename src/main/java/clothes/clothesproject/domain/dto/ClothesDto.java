@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClothesDto {
 
-
     private String firstclothes;
     private String secondclothes;
     private String thirdclothes;

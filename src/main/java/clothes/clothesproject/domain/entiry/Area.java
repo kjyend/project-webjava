@@ -14,10 +14,8 @@ public class Area {
     private Long id;
 
     @Column
-    private String city;
+    private String latitude;//위도 nx
     @Column
-    private String county;
-    @Column
-    private String town;
+    private String hardness;//경도 ny
 
 }

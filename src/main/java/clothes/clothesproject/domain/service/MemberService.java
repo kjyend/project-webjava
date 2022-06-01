@@ -18,7 +18,6 @@ public class MemberService {
 
     public void save(Member member){//login 블로그 보고 dto에서 entity 넣는것해야한다.
 //        //memberDto를 이용한 로그인 타입 오류
-//        Member member=new Member(memberdto);
         memberRepository.save(member);
     }
 }

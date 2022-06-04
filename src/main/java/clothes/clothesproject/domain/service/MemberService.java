@@ -1,6 +1,7 @@
 package clothes.clothesproject.domain.service;
 
 
+import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,4 +21,9 @@ public class MemberService {
 //        //memberDto를 이용한 로그인 타입 오류
         memberRepository.save(member);
     }
+    public void saveArea(Member member, Area area){
+        member.setArea(area);
+        memberRepository.save(member);
+    }
+
 }

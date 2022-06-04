@@ -1,5 +1,6 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.service.WeatherService;
@@ -38,7 +39,7 @@ public class WeatherController { //데이터값 html
     private final WeatherService weatherService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather) throws Exception {
+    public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather, Area area) throws Exception {
         if (loginMember == null) {
             return "redirect:/";
         }

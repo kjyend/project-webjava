@@ -27,6 +27,9 @@ public class Member {
     @Column
     private String dob;
 
+    @OneToOne
+    @JoinColumn(name="area_id")
+    private Area area;
 
     public Member(MemberDto member) {
         this.loginId=member.getLoginId();

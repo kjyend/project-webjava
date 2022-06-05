@@ -2,7 +2,6 @@ package clothes.clothesproject.domain.service;
 
 
 import clothes.clothesproject.domain.entiry.Area;
-import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.repository.AreaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

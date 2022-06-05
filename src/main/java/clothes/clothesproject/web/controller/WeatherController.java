@@ -35,6 +35,8 @@ public class WeatherController { //데이터값 html
     private String tmp; //온도
     private String pcp; //강수 없음
     private String sky; //하늘 상태
+    private String lat="60"; // 위도 nx 기본 60
+    private String har="127"; // 경도 ny 기본 127
     //dto 해야한다.
     private final WeatherService weatherService;
 
@@ -43,12 +45,13 @@ public class WeatherController { //데이터값 html
         if (loginMember == null) {
             return "redirect:/";
         }
+
         if(jsonString().equals("00")){
             weatherService.save(weather,tmp,pcp,sky);
         }
         return "weather/weather";
     }
-    public String jsonString() throws Exception {
+    public String jsonString() throws Exception {//지역값을 밖에서 받아와야한다.
          /*
             @ API LIST
             getUltraSrtNcst 초단기실황조회
@@ -68,8 +71,8 @@ public class WeatherController { //데이터값 html
         String nowTime=formatter.format(time.getTime()).toString();
 
 
-        String nx = "60";	//위도 : 나중에 입력 받아야한다.
-        String ny = "127";	//경도 : 나중에 입력 받아야한다.
+        String nx = lat;	//위도 : 나중에 입력 받아야한다.
+        String ny = har;	//경도 : 나중에 입력 받아야한다.
         String baseDate = days;	//조회하고싶은 날짜
         String baseTime = nowTime;	//조회하고싶은 시간 nowTime
 

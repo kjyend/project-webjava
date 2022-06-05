@@ -17,8 +17,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void save(Member member){//login 블로그 보고 dto에서 entity 넣는것해야한다.
-//        //memberDto를 이용한 로그인 타입 오류
+    public void save(Member member){
         memberRepository.save(member);
     }
     public void saveArea(Member member, Area area){

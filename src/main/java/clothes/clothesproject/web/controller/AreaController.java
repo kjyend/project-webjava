@@ -39,6 +39,7 @@ public class AreaController {
 
         log.info("33={}",session.getAttribute(SessionConst.LOGIN_MEMBER));
         log.info("333={}",area.getId());
+        //if문을 넣는데 areaid값이 있으면 if문으로 들어가고 아니면 else문으로 들어간다.
 
         areaService.save(area);
         memberService.saveArea((Member) session.getAttribute(SessionConst.LOGIN_MEMBER),area);//session값으로 보내줘서 해야한다.

@@ -3,6 +3,7 @@ package clothes.clothesproject.web.controller;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
+import clothes.clothesproject.domain.service.AreaService;
 import clothes.clothesproject.domain.service.WeatherService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,11 +40,16 @@ public class WeatherController { //데이터값 html
     private String har="127"; // 경도 ny 기본 127
     //dto 해야한다.
     private final WeatherService weatherService;
+    private final AreaService areaService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
     public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather, Area area) throws Exception {
         if (loginMember == null) {
             return "redirect:/";
+        }
+        if(loginMember.getArea()!=null) {
+            lat=areaService.latHave(loginMember.getId());
+            har=areaService.harHave(loginMember.getId());
         }
 
         if(jsonString().equals("00")){

@@ -8,7 +8,6 @@ import clothes.clothesproject.domain.service.WeatherService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,7 +28,6 @@ import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class WeatherController { //데이터값 html
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
@@ -77,8 +75,8 @@ public class WeatherController { //데이터값 html
         String nowTime=formatter.format(time.getTime()).toString();
 
 
-        String nx = lat;	//위도 : 나중에 입력 받아야한다.
-        String ny = har;	//경도 : 나중에 입력 받아야한다.
+        String nx = lat;	//위도
+        String ny = har;	//경도
         String baseDate = days;	//조회하고싶은 날짜
         String baseTime = nowTime;	//조회하고싶은 시간 nowTime
 

@@ -1,5 +1,6 @@
 package clothes.clothesproject.domain.service;
 
+import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.repository.WeatherRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,11 @@ public class WeatherService {
         weather.setPcp(pcp);
         weather.setSky(sky);
         weather.setTemp(tmp);
+        weatherRepository.save(weather);
+    }
+
+    public void saveMember(Weather weather, Member member){
+        weather.setMember(member);
         weatherRepository.save(weather);
     }
 

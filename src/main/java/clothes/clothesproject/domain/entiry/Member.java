@@ -31,6 +31,9 @@ public class Member {
     @JoinColumn(name="area_id")
     private Area area;
 
+    @OneToOne(mappedBy = "member",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Weather weather;
+
     public Member(MemberDto member) {
         this.loginId=member.getLoginId();
         this.password=member.getPassword();

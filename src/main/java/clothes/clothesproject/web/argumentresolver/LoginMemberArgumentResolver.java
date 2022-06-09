@@ -2,7 +2,6 @@ package clothes.clothesproject.web.argumentresolver;
 
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.web.SessionConst;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

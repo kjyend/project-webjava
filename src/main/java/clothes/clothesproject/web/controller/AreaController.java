@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class AreaController {
 
     private final AreaService areaService;
@@ -37,11 +36,7 @@ public class AreaController {
 
         HttpSession session = request.getSession();
 
-        log.info("33={}",session.getAttribute(SessionConst.LOGIN_MEMBER));
-        log.info("333={}",area.getId());
-        //if문을 넣는데 areaid값이 있으면 if문으로 들어가고 아니면 else문으로 들어간다.
-
-        areaService.save(area);
+        areaService.save(area);//area 저장을 id로 보고 저장해야한다.
         memberService.saveArea((Member) session.getAttribute(SessionConst.LOGIN_MEMBER),area);//session값으로 보내줘서 해야한다.
 
         return "redirect:/";

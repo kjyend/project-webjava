@@ -4,7 +4,6 @@ import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.service.LoginService;
 import clothes.clothesproject.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입하는데 비워있음
     // 이거 일단 전부 Model로 받아서 확인을해야할거 같다. 그리고 setter없이 저장하기
 

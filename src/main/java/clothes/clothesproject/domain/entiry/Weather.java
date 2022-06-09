@@ -19,5 +19,7 @@ public class Weather {
     @Column
     private String sky;//하늘 상태
 
-
+    @OneToOne
+    @JoinColumn(name="member_id")
+    private Member member;
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,8 +32,8 @@ public class Member {
     @JoinColumn(name="area_id")
     private Area area;
 
-    @OneToOne(mappedBy = "member",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Weather weather;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Weather> weather;
 
     public Member(MemberDto member) {
         this.loginId=member.getLoginId();

@@ -51,7 +51,7 @@ public class WeatherController { //데이터값 html
         }
 
         if(jsonString().equals("00")){
-            weatherService.save(weather,tmp,pcp,sky);
+            weatherService.save(weather,tmp,pcp,sky,loginMember);
         }
         return "weather/weather";
     }

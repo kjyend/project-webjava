@@ -18,7 +18,7 @@ public class Area { //area controller에서 service를 통해서 위치정보를
     @Column
     private String hardness;//경도 ny
 
-    @OneToOne(mappedBy="area",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy="area",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Member member;
 
 }

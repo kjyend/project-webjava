@@ -19,7 +19,7 @@ public class Weather {
     @Column
     private String sky;//하늘 상태
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
 }

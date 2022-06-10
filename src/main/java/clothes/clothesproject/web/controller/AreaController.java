@@ -35,7 +35,7 @@ public class AreaController {
     public String clothes(@ModelAttribute Area area, HttpServletRequest request){//id 값을 받아서 수정?
 
         HttpSession session = request.getSession();
-
+//        if(session.getAttribute(SessionConst.LOGIN_MEMBER).equals(area.getMember())) {
         areaService.save(area);//area 저장을 id로 보고 저장해야한다.
         memberService.saveArea((Member) session.getAttribute(SessionConst.LOGIN_MEMBER),area);//session값으로 보내줘서 해야한다.
 

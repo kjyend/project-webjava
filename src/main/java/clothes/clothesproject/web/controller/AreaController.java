@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class AreaController {
 
     private final AreaService areaService;
@@ -32,12 +33,18 @@ public class AreaController {
     }
 
     @PostMapping("/area")
-    public String clothes(@ModelAttribute Area area, HttpServletRequest request){//id 값을 받아서 수정?
+    public String clothes(@ModelAttribute Area area ,HttpServletRequest request){//id 값을 받아서 수정?
 
         HttpSession session = request.getSession();
-//        if(session.getAttribute(SessionConst.LOGIN_MEMBER).equals(area.getMember())) {
-        areaService.save(area);//area 저장을 id로 보고 저장해야한다.
-        memberService.saveArea((Member) session.getAttribute(SessionConst.LOGIN_MEMBER),area);//session값으로 보내줘서 해야한다.
+
+        String check = memberService.listCheck((Member) session.getAttribute(SessionConst.LOGIN_MEMBER));
+
+        if(check.equals("true")) {//member안에 area값이 있다.
+            areaService.changeArea((Member) session.getAttribute(SessionConst.LOGIN_MEMBER),area);
+        } else{//member안에 area값이 없다.
+            areaService.save(area);//area 저장을 id로 보고 저장해야한다.
+            memberService.saveArea((Member) session.getAttribute(SessionConst.LOGIN_MEMBER), area);//session값으로 보내줘서 해야한다.
+        }
 
         return "redirect:/";
     }

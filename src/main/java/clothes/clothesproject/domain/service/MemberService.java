@@ -26,5 +26,12 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    public String listCheck(Member member){
+        Member one = memberRepository.findOne(member.getId());
+        if(one.getArea()!=null) {
+            return "true";
+        }
+        return "false";
+    }
 
 }

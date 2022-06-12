@@ -55,6 +55,8 @@ public class WeatherController { //데이터값 html
         }
         return "weather/weather";
     }
+
+
     public String jsonString() throws Exception {//지역값을 밖에서 받아와야한다.
          /*
             @ API LIST

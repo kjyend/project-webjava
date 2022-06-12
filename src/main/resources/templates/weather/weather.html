@@ -12,6 +12,12 @@
             left: 50%;
             transform: translate(-50%,-50%);
         }
+        .button-aperture{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
     </style>
 </head>
 <body>
@@ -27,10 +33,13 @@
 </div>
 <div class="button-mid">
     <form  action="" th:object="${weather}">
-        <div th:text="*{pcp}"></div>
-        <div th:text="*{sky}"></div>
-        <div th:text="*{temp}"></div>
+        <div th:text="|강수량 : *{pcp}|"></div>
+        <div th:text="|하늘상태 (맑음:1, 구름많음:3, 흐림:4) : *{sky}|"></div>
+        <div th:text="|온도 : *{temp}&deg|"></div>
     </form>
+</div>
+<div class="button-aperture">
+    <button class=" btn-primary" th:onclick="|location.href='@{/clothes}'|" type="button">날씨에 맞는 옷 추천</button>
 </div>
 </body>
 </html>

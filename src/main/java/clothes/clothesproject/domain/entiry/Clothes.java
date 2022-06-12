@@ -16,13 +16,13 @@ public class Clothes {
     private Long id;
 
     @Column
-    private String firstclothes;
+    private String topFirst;
     @Column
-    private String secondclothes;
+    private String topSecond;
     @Column
-    private String thirdclothes;
+    private String bottomThird;
     @Column
-    private String fourthclothes;
+    private String bottomFourth;
 
 
 }

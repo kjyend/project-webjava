@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
-    <title>home</title>
     <style>
-
-        .button-top{
+        .button-mid{
             width: 600px;
             margin: 250px auto;
         }
     </style>
 </head>
+<body>
 <div class="navbar navbar-dark bg-dark">
     <div class="container-md">
         <a class="navbar-brand" th:onclick="|location.href='@{/}'|">running</a>
@@ -22,9 +21,14 @@
         </form>
     </div>
 </div>
-<div class="button-top">
-    <button class="w-25 btn btn-primary" th:onclick="|location.href='@{/weather}'|" type="button">날씨</button>
-    <button class="w-25 btn btn-primary " th:onclick="|location.href='@{/area}'|" type="button">지역 설정</button>
+<div class="button-mid">
+    <form action="" th:object="${clothes}">
+        <input th:text="*{topFirst}">
+        <input th:text="*{topSecond}">
+        <input th:text="*{bottomThird}">
+        <input th:text="*{bottomFourth}">
+        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/}'|" >취소</button>
+    </form>
 </div>
 </body>
 </html>

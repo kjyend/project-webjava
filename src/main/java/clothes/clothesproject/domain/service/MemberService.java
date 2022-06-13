@@ -25,6 +25,10 @@ public class MemberService {
         member.setArea(area);
         memberRepository.save(member);
     }
+    public void saveWeather(Member member,Weather weather){
+        member.setWeather(weather);
+        memberRepository.save(member);
+    }
 
     public String listCheck(Member member){
         Member one = memberRepository.findOne(member.getId());

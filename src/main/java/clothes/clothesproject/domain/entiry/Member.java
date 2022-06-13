@@ -32,8 +32,9 @@ public class Member {
     @JoinColumn(name="area_id")
     private Area area;
 
-    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
-    private List<Weather> weather;
+    @OneToOne
+    @JoinColumn(name="weather_id")
+    private Weather weather;
 
     public Member(MemberDto member) {
         this.loginId=member.getLoginId();

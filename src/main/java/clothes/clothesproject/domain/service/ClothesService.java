@@ -16,4 +16,5 @@ public class ClothesService {
     public void save(Clothes clothes){
         clothesRepository.save(clothes);
     }
+
 }

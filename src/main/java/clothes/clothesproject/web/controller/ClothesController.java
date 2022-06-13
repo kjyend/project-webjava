@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class ClothesController {
         if(loginMember==null){
             return "redirect:/";
         }
-
+        //데이터를 미리 만들어서 if문으로 비교하고 db에서 옷을 추천하면된다.
         return "weather/clothes";
     }
 }

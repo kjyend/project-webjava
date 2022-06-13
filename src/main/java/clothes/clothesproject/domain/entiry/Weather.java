@@ -19,7 +19,6 @@ public class Weather {
     @Column
     private String sky;//하늘 상태
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="member_id")
+    @OneToOne(mappedBy = "weather",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Member member;
 }

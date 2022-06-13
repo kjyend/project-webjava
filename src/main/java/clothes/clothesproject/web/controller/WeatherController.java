@@ -4,10 +4,12 @@ import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.service.AreaService;
+import clothes.clothesproject.domain.service.MemberService;
 import clothes.clothesproject.domain.service.WeatherService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +30,7 @@ import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class WeatherController { //데이터값 html
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
@@ -39,9 +42,10 @@ public class WeatherController { //데이터값 html
     //dto 해야한다.
     private final WeatherService weatherService;
     private final AreaService areaService;
+    private final MemberService memberService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather, Area area) throws Exception {
+    public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather) throws Exception {
         if (loginMember == null) {
             return "redirect:/";
         }
@@ -50,8 +54,16 @@ public class WeatherController { //데이터값 html
             har=areaService.harHave(loginMember.getId());
         }
 
+
         if(jsonString().equals("00")){
-            weatherService.save(weather,tmp,pcp,sky,loginMember);
+            //여기서 에러 나온다. save해줘야한다. changeWeather 고민해야함
+            if(loginMember.getWeather()!=null){
+                weatherService.changeWeather(loginMember,tmp,pcp,sky,weather);
+            }else{
+                weatherService.save(weather,tmp,pcp,sky);
+                memberService.saveWeather(loginMember,weather);
+                //일단 정보가 없어서 ㄱㄷ
+            }
         }
         return "weather/weather";
     }
@@ -73,14 +85,14 @@ public class WeatherController { //데이터값 html
 
         Calendar time = Calendar.getInstance();
         time.setTime(now);
-        time.add(Calendar.HOUR,-3);
+        time.add(Calendar.HOUR,-5);
         String nowTime=formatter.format(time.getTime()).toString();
 
 
         String nx = lat;	//위도
         String ny = har;	//경도
         String baseDate = days;	//조회하고싶은 날짜
-        String baseTime = nowTime;	//조회하고싶은 시간 nowTime
+        String baseTime = "0500";	//조회하고싶은 시간 nowTime
 
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 
@@ -121,12 +133,15 @@ public class WeatherController { //데이터값 html
 
         JSONObject itemArray1= (JSONObject) item.get(0); // 온도
         tmp = (String) itemArray1.get("fcstValue");
+        log.info("tmp={}",tmp);
 
         JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
         pcp= (String) itemArray2.get("fcstValue");
+        log.info("pcp={}",pcp);
 
         JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
         sky= (String) itemArray3.get("fcstValue");
+        log.info("sky={}",sky);
 
         return "00";
     }

@@ -34,7 +34,7 @@ import java.util.*;
 public class WeatherController { //데이터값 html
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
-    private String tmp; //온도
+    private Long tmp; //온도
     private String pcp; //강수 없음
     private String sky; //하늘 상태
     private String lat="60"; // 위도 nx 기본 60
@@ -61,8 +61,6 @@ public class WeatherController { //데이터값 html
                 weatherService.changeWeather(loginMember,tmp,pcp,sky,weather);
             }else{
                 weatherService.save(weather,tmp,pcp,sky);
-                memberService.saveWeather(loginMember,weather);
-                //일단 정보가 없어서 ㄱㄷ
             }
         }
         return "weather/weather";
@@ -132,7 +130,7 @@ public class WeatherController { //데이터값 html
         JSONArray item= (JSONArray) items.get("item");
 
         JSONObject itemArray1= (JSONObject) item.get(0); // 온도
-        tmp = (String) itemArray1.get("fcstValue");
+        tmp = (Long) itemArray1.get("fcstValue");
         log.info("tmp={}",tmp);
 
         JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지

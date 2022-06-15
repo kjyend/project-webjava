@@ -21,7 +21,8 @@ public class ClothesController {
         if(loginMember==null){
             return "redirect:/";
         }
-        //데이터를 미리 만들어서 if문으로 비교하고 db에서 옷을 추천하면된다.
+        //service를 통해서 if문으로 비교하고 다른 정보의 db를 저장한다.
+        clothesService.compareTemp(clothes,weather.getTemp());
         return "weather/clothes";
     }
 }

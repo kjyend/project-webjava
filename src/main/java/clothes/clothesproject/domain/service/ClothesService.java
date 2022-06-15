@@ -17,4 +17,21 @@ public class ClothesService {
         clothesRepository.save(clothes);
     }
 
+    public void compareTemp(Clothes clothes,Long temp){
+        if(temp<6){
+
+        }else if(temp<10){
+
+        }else if(temp<12){
+
+        }else if(temp<17){
+
+        }else if(temp<20){
+
+        }else if(temp<23){
+
+        }else{
+
+        }
+    }
 }

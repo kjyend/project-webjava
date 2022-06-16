@@ -21,4 +21,8 @@ public class Weather {
 
     @OneToOne(mappedBy = "weather",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Member member;
+
+    @OneToOne
+    @JoinColumn(name = "clothes_id")
+    private Clothes clothes;
 }

@@ -6,6 +6,7 @@ import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.service.AreaService;
 import clothes.clothesproject.domain.service.MemberService;
 import clothes.clothesproject.domain.service.WeatherService;
+import clothes.clothesproject.web.SessionConst;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -56,11 +57,11 @@ public class WeatherController { //데이터값 html
 
 
         if(jsonString().equals("00")){
-            //여기서 에러 나온다. save해줘야한다. changeWeather 고민해야함
             if(loginMember.getWeather()!=null){
                 weatherService.changeWeather(loginMember,tmp,pcp,sky,weather);
             }else{
                 weatherService.save(weather,tmp,pcp,sky);
+                memberService.saveWeather(loginMember,weather);
             }
         }
         return "weather/weather";
@@ -130,7 +131,7 @@ public class WeatherController { //데이터값 html
         JSONArray item= (JSONArray) items.get("item");
 
         JSONObject itemArray1= (JSONObject) item.get(0); // 온도
-        tmp = (Long) itemArray1.get("fcstValue");
+        tmp = Long.valueOf((String) itemArray1.get("fcstValue"));
         log.info("tmp={}",tmp);
 
         JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지

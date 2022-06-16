@@ -3,10 +3,7 @@ package clothes.clothesproject.domain.entiry;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter// @setter값이 없어서 값을 못받았다.
@@ -23,6 +20,8 @@ public class Clothes {
     private String bottomThird;
     @Column
     private String bottomFourth;
-
+//service 저장할것
+    @OneToOne(mappedBy = "clothes",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Weather weather;
 
 }

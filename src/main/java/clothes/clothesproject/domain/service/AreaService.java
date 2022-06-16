@@ -32,7 +32,7 @@ public class AreaService {
     }
     public void changeArea(Member member, Area area){
         Area memberArea = member.getArea();
-        area.setId(memberArea.getId());//나중에 repository 공부하고 바꿔줘야한다.
+        area.setId(memberArea.getId());//나중에 repository 바꿔줘야한다.
         areaRepository.save(area);
     }
 }

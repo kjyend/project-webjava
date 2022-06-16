@@ -1,5 +1,6 @@
 package clothes.clothesproject.domain.service;
 
+import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.repository.WeatherRepository;
@@ -29,6 +30,10 @@ public class WeatherService {
         weather.setPcp(pcp);
         weather.setSky(sky);
         weather.setTemp(tmp);
+        weatherRepository.save(weather);
+    }
+    public void saveClothes(Weather weather, Clothes clothes){
+        weather.setClothes(clothes);
         weatherRepository.save(weather);
     }
 

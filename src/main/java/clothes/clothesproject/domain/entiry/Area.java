@@ -20,5 +20,4 @@ public class Area { //area controller에서 service를 통해서 위치정보를
 
     @OneToOne(mappedBy="area",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Member member;
-
 }

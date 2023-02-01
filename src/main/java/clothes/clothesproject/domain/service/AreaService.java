@@ -23,11 +23,12 @@ public class AreaService {
     }
 
     public String latHave(Long id){
-        Member one = memberRepository.findOne(id);
+        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
         return one.getArea().getLatitude();
     }
+
     public String harHave(Long id){
-        Member one = memberRepository.findOne(id);
+        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
         return one.getArea().getHardness();
     }
     public void changeArea(Member member, Area area){

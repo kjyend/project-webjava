@@ -1,5 +1,6 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.service.AreaService;
@@ -25,10 +26,7 @@ public class AreaController {
     private final MemberService memberService;
 
     @GetMapping("/area")
-    public String clothesForm(@Login Member loginMember,@ModelAttribute("area") Area area){
-        if(loginMember==null){
-            return "redirect:/";
-        }
+    public String clothesForm(@Login MemberDto loginMember, @ModelAttribute("area") Area area){
         return "weather/area";
     }
 

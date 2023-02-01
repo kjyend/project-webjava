@@ -1,6 +1,7 @@
 package clothes.clothesproject.domain.service;
 
 
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
@@ -17,7 +18,8 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void save(Member member){
+    public void save(MemberDto memberDto){
+        Member member = memberDto.toEntity();
         memberRepository.save(member);
     }
 

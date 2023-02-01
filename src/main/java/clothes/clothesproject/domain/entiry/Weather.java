@@ -1,22 +1,18 @@
 package clothes.clothesproject.domain.entiry;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter// dto로 바꾸어야한다.
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Weather {
     @Id @GeneratedValue
     private Long id;
 
-    @Column
     private Long temp; //온도
-    @Column
     private String pcp;//강수가 있는지
-    @Column
     private String sky;//하늘 상태
 
     @OneToOne(mappedBy = "weather",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -25,4 +21,13 @@ public class Weather {
     @OneToOne
     @JoinColumn(name = "clothes_id")
     private Clothes clothes;
+
+    @Builder
+    public Weather(Long id, Long temp, String pcp, String sky, Clothes clothes) {
+        this.id = id;
+        this.temp = temp;
+        this.pcp = pcp;
+        this.sky = sky;
+        this.clothes = clothes;
+    }
 }

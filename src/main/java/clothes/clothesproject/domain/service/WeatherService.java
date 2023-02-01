@@ -1,5 +1,7 @@
 package clothes.clothesproject.domain.service;
 
+import clothes.clothesproject.domain.dto.ClothesDto;
+import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
@@ -32,8 +34,8 @@ public class WeatherService {
         weather.setTemp(tmp);
         weatherRepository.save(weather);
     }
-    public void saveClothes(Weather weather, Clothes clothes){
-        weather.setClothes(clothes);
+    public void saveClothes(WeatherDto weatherDto, ClothesDto clothesDto){
+        weatherDto.builder.
         weatherRepository.save(weather);
     }
 

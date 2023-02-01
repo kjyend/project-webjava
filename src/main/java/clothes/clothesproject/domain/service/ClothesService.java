@@ -1,5 +1,6 @@
 package clothes.clothesproject.domain.service;
 
+import clothes.clothesproject.domain.dto.ClothesDto;
 import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.repository.ClothesRepository;
@@ -20,23 +21,17 @@ public class ClothesService {
     private final ClothesRepository clothesRepository;
     private final WeatherRepository weatherRepository;
 
-    public void save(Clothes clothes){
-        clothesRepository.save(clothes);
-    }
-
-    public void compareTemp(Clothes clothes,Long temp,Clothes clothesId){
+    public void compareTemp(ClothesDto clothes,Long temp){
         //if문으로 weather에 clothes잇으면 ㄱㅊ 아니면 if문에 들가서 새로 만들기
 
-        if(clothesId!=null){
-            clothes.setId(clothesId.getId());
-            log.info("clothes1={}",clothes.getId());
-        }
+
         if(temp<6){//온도에 맞는 옷 넣어주고 저장하면 끝임
             clothes.setTopFirst("패딩");
             clothes.setTopSecond("두꺼운 코트");
             clothes.setBottomThird("목도리");
             clothes.setBottomFourth("기모 제품");
             log.info("clothes2={}",clothes.getId());
+
             clothesRepository.save(clothes);
         }else if(temp<10){
             clothes.setTopFirst("코트");

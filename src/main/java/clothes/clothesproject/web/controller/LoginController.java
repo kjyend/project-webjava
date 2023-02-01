@@ -1,5 +1,6 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.service.LoginService;
 import clothes.clothesproject.domain.service.MemberService;
@@ -23,17 +24,18 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute("member") Member member){
+    public String loginForm(MemberDto memberDto,Model model){
+        model.addAttribute("member",memberDto);
         return "member/login";
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("member") Member member, BindingResult bindingResult,
+    public String login(@Validated MemberDto memberDto, BindingResult bindingResult,
                         @RequestParam(defaultValue = "/") String redirectULR, HttpServletRequest request){// dto로 바꿔야한다.
         if(bindingResult.hasErrors()){
             return "member/login";
         }
-        Member loginMember=loginService.login(member.getLoginId(),member.getPassword());
+        Member loginMember=loginService.login(memberDto.getLoginId(),memberDto.getPassword());
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");
@@ -45,17 +47,20 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
     }
 
     @GetMapping("/signup")
-    public String signupForm(Member member, Model model){
+    public String signupForm(MemberDto member, Model model){
         model.addAttribute("member",member);
         return "member/signup";
     }
 
     @PostMapping("/signup")//setter가 없어서 null로 저장된다. setter가 있으면 그냥 저장이 된다. 지금 setter를 안함
-    public String save(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult){//Member > MemberDto로 변경해야함
+    public String save(@Validated MemberDto memberDto, BindingResult bindingResult){//Member > MemberDto로 변경해야함
         if(bindingResult.hasErrors()){
             return "member/signup";
         }
-        memberService.save(member);
+        //회원 확인하고
+
+
+        memberService.save(memberDto);
         return "redirect:/";
     }
 

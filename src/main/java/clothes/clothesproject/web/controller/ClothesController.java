@@ -1,4 +1,7 @@
 package clothes.clothesproject.web.controller;
+import clothes.clothesproject.domain.dto.ClothesDto;
+import clothes.clothesproject.domain.dto.MemberDto;
+import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
@@ -21,12 +24,9 @@ public class ClothesController {
     private final WeatherService weatherService;
 
     @GetMapping("/clothes")
-    public String editForm(@Login Member loginMember, @ModelAttribute("clothes") Clothes clothes){
-        if(loginMember==null){
-            return "redirect:/";
-        }
+    public String editForm(@Login MemberDto loginMember, ClothesDto clothes, WeatherDto weatherDto){
         //service를 통해서 if문으로 비교하고 다른 정보의 db를 저장한다.
-        clothesService.compareTemp(clothes,loginMember.getWeather().getTemp(),loginMember.getWeather().getClothes());
+        clothesService.compareTemp(clothes,weatherDto.getTemp());
         weatherService.saveClothes(loginMember.getWeather(),clothes);
         return "weather/clothes";
     }

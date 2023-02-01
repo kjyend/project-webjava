@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class AreaDto {
 
-    private String city;
-    private String county;
-    private String town;
+    private String latitude;//위도 nx
+    private String hardness;//경도 ny
+
+
 }

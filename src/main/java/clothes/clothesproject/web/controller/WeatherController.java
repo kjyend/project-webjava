@@ -1,5 +1,7 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.dto.AreaDto;
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
@@ -46,12 +48,10 @@ public class WeatherController { //데이터값 html
     private final MemberService memberService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login Member loginMember, @ModelAttribute("weather") Weather weather) throws Exception {
-        if (loginMember == null) {
-            return "redirect:/";
-        }
+    public String weatherForm(@Login MemberDto loginMember, @ModelAttribute("weather") Weather weather, AreaDto areaDto) throws Exception {
+
         if(loginMember.getArea()!=null) {
-            lat=areaService.latHave(loginMember.getId());
+            lat=areaService.latHave(loginMember.getId(),weather.get);
             har=areaService.harHave(loginMember.getId());
         }
 

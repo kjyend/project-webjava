@@ -2,15 +2,14 @@ package clothes.clothesproject.domain.dto;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Builder
 @Getter
 public class ClothesDto {
 
-    private String firstclothes;
-    private String secondclothes;
-    private String thirdclothes;
-    private String fourthclothes;
+    private String clothe;
 
 }

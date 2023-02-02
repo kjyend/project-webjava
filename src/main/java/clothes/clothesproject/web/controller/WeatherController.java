@@ -2,6 +2,7 @@ package clothes.clothesproject.web.controller;
 
 import clothes.clothesproject.domain.dto.AreaDto;
 import clothes.clothesproject.domain.dto.MemberDto;
+import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
@@ -17,6 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -48,9 +50,11 @@ public class WeatherController { //데이터값 html
     private final MemberService memberService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login MemberDto loginMember, @ModelAttribute("weather") Weather weather, AreaDto areaDto) throws Exception {
+    public String weatherForm(@Login MemberDto loginMember, WeatherDto weather, AreaDto areaDto, Model model) throws Exception {
 
-        if(loginMember.getArea()!=null) {
+        model.addAttribute("weather", weather);
+
+        if(loginMember.getArea()!=null) {//경도 위도가 없는 경우 넣어준다.
             lat=areaService.latHave(loginMember.getId(),weather.get);
             har=areaService.harHave(loginMember.getId());
         }
@@ -60,7 +64,7 @@ public class WeatherController { //데이터값 html
             if(loginMember.getWeather()!=null){
                 weatherService.changeWeather(loginMember,tmp,pcp,sky,weather);
             }else{
-                weatherService.save(weather,tmp,pcp,sky);
+                weatherService.save(tmp,pcp,sky);
                 memberService.saveWeather(loginMember,weather);
             }
         }

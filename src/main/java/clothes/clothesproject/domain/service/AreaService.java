@@ -1,6 +1,7 @@
 package clothes.clothesproject.domain.service;
 
 
+import clothes.clothesproject.domain.dto.AreaDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.repository.AreaRepository;
@@ -18,7 +19,12 @@ public class AreaService {
     private final AreaRepository areaRepository;
     private final MemberRepository memberRepository;
 
-    public void save(Area area){ // 지역 수정 저장
+    public void save(AreaDto areaDto,Member member){ // 지역 수정 저장
+        Area area = Area.builder()
+                .hardness(areaDto.getHardness())
+                .latitude(areaDto.getLatitude())
+                .member(member)
+                .build();
         areaRepository.save(area);
     }
 
@@ -31,7 +37,8 @@ public class AreaService {
         Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
         return one.getArea().getHardness();
     }
-    public void changeArea(Member member, Area area){
+
+    public void changeArea(Member member, AreaDto area){
         Area memberArea = member.getArea();
         area.setId(memberArea.getId());//나중에 repository 바꿔줘야한다.
         areaRepository.save(area);

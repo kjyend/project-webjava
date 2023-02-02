@@ -11,20 +11,14 @@ public class Clothes {
     @Id @GeneratedValue
     private Long id;
 
-    private String topFirst;
-    private String topSecond;
-    private String bottomThird;
-    private String bottomFourth;
-//service 저장할것
+    private String clothe;
+
     @OneToOne(mappedBy = "clothes",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Weather weather;
 
     @Builder
-    public Clothes(Long id, String topFirst, String topSecond, String bottomThird, String bottomFourth) {
+    public Clothes(Long id, String clothe) {
         this.id = id;
-        this.topFirst = topFirst;
-        this.topSecond = topSecond;
-        this.bottomThird = bottomThird;
-        this.bottomFourth = bottomFourth;
+        this.clothe = clothe;
     }
 }

@@ -19,22 +19,18 @@ public class Member {
     private String name;
     private String dob;
 
-    @OneToOne
-    @JoinColumn(name="area_id")
-    private Area area;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Area> area;
 
-    @OneToOne
-    @JoinColumn(name="weather_id")
-    private Weather weather;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Weather> weather;
 
     @Builder
-    public Member(Long id, String loginId, String password, String name, String dob, Area area, Weather weather) {
+    public Member(Long id, String loginId, String password, String name, String dob) {
         this.id = id;
         this.loginId = loginId;
         this.password = password;
         this.name = name;
         this.dob = dob;
-        this.area = area;
-        this.weather = weather;
     }
 }

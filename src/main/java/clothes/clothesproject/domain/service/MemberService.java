@@ -1,7 +1,9 @@
 package clothes.clothesproject.domain.service;
 
 
+import clothes.clothesproject.domain.dto.AreaDto;
 import clothes.clothesproject.domain.dto.MemberDto;
+import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
@@ -10,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,17 +27,9 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    public void saveArea(Member member, Area area){
-        member.setArea(area);
-        memberRepository.save(member);
-    }
-    public void saveWeather(Member member,Weather weather){
-        member.setWeather(weather);
-        memberRepository.save(member);
-    }
 
     public String listCheck(Member member){
-        Member one = memberRepository.findOne(member.getId());
+        Member one = memberRepository.findById(member.getId()).orElseThrow(()->new IllegalArgumentException("맴버가 없습니다."));
         if(one.getArea()!=null) {
             return "true";
         }

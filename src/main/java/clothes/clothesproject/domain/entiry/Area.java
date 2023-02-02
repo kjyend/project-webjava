@@ -15,14 +15,15 @@ public class Area { //area controller에서 service를 통해서 위치정보를
     private String latitude;//위도 nx
     private String hardness;//경도 ny
 
-    @OneToOne(mappedBy="area",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @Builder
-    public Area(Long id, String latitude, String hardness) {
+    public Area(Long id, String latitude, String hardness, Member member) {
         this.id = id;
         this.latitude = latitude;
         this.hardness = hardness;
-
+        this.member = member;
     }
 }

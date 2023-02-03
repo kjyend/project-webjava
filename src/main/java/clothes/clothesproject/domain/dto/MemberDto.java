@@ -7,6 +7,7 @@ import lombok.*;
 @Builder
 public class MemberDto { //회원가입 dto
 
+    private Long id;
     private String loginId;
     private String password;
     private String name;

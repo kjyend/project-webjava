@@ -12,8 +12,9 @@ import lombok.NoArgsConstructor;
 @Getter
 public class WeatherDto {
 
+    private Long id;
     private Long temp; //온도
     private String pcp;//강수가 있는지
     private String sky;//하늘 상태
-
+    private Member member;
 }

@@ -1,10 +1,12 @@
 package clothes.clothesproject.domain.service;
 
 import clothes.clothesproject.domain.dto.ClothesDto;
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
+import clothes.clothesproject.domain.repository.MemberRepository;
 import clothes.clothesproject.domain.repository.WeatherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class WeatherService {
 
     private final WeatherRepository weatherRepository;
 
+    private final MemberRepository memberRepository;
+
     public void save(Long tmp,String pcp,String sky){//dto를 통해서 저장하는데
         Weather weather = Weather.builder()
                 .temp(tmp)
@@ -29,17 +33,23 @@ public class WeatherService {
 
         weatherRepository.save(weather);
     }
-    public void changeWeather(Member member,Long tmp,String pcp,String sky,Weather weather){
-        Weather memberWeather = member.getWeather();
-        weather.setId(memberWeather.getId());
-        weather.setPcp(pcp);
-        weather.setSky(sky);
-        weather.setTemp(tmp);
+    public void changeWeather(MemberDto memberDto, Long tmp, String pcp, String sky, WeatherDto weatherDto
+    ){
+        Member member = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
+
+        Weather weather = weatherRepository.findById(weatherDto.getId()).orElseThrow(() -> new IllegalArgumentException("원하는 weather 값이 없습니다."));
+
+        weather.builder()
+                .temp(tmp)
+                .pcp(pcp)
+                .sky(sky)
+                .member(member)
+                .build();
         weatherRepository.save(weather);
     }
-    public void saveClothes(WeatherDto weatherDto, ClothesDto clothesDto){
-        weatherDto.builder.
-        weatherRepository.save(weather);
-    }
+//    public void saveClothes(WeatherDto weatherDto, ClothesDto clothesDto){
+//        weatherDto.builder.
+//        weatherRepository.save(weather);
+//    }
 
 }

@@ -24,10 +24,9 @@ public class ClothesController {
     private final WeatherService weatherService;
 
     @GetMapping("/clothes")
-    public String editForm(@Login MemberDto loginMember, ClothesDto clothes, WeatherDto weatherDto){
+    public String editForm(@Login MemberDto memberDto, ClothesDto clothes, WeatherDto weatherDto){
         //service를 통해서 if문으로 비교하고 다른 정보의 db를 저장한다.
-        clothesService.compareTemp(clothes,weatherDto.getTemp());
-        weatherService.saveClothes(loginMember.getWeather(),clothes);
+
         return "weather/clothes";
     }
 }

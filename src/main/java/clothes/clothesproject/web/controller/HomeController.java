@@ -1,5 +1,6 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.web.argumentresolver.Login;
 import lombok.extern.slf4j.Slf4j;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String home(@Login Member loginMember, Model model){
-        if(loginMember==null){
+    public String home(@Login MemberDto memberDto, Model model){
+        model.addAttribute("member",memberDto);
+        if(memberDto==null){
             return "home";
         }
-        model.addAttribute("member",loginMember);
         return "checkHome";
     }
 }

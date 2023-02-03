@@ -33,4 +33,11 @@ public class Member {
         this.name = name;
         this.dob = dob;
     }
+
+    public MemberDto toMemberDto() {
+        return MemberDto.builder()
+                .loginId(loginId)
+                .password(password)
+                .build();
+    }
 }

@@ -28,19 +28,18 @@ public class AreaService {
         areaRepository.save(area);
     }
 
-    public String latHave(Long id){
-        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
-        return one.getArea().getLatitude();
-    }
+//    public String latHave(Long id){
+//        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
+//        return one.getArea().getLatitude();
+//    }
 
-    public String harHave(Long id){
-        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
-        return one.getArea().getHardness();
-    }
+//    public String harHave(Long id){
+//        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
+//        return one.getArea().getHardness();
+//    }
 
-    public void changeArea(Member member, AreaDto area){
-        Area memberArea = member.getArea();
-        area.setId(memberArea.getId());//나중에 repository 바꿔줘야한다.
-        areaRepository.save(area);
-    }
+//    public void changeArea(Member member, AreaDto area){
+//        Area memberArea = member.getArea();
+//        area.setId(memberArea.getId());//나중에 repository 바꿔줘야한다.//       areaRepository.save(area);
+//    }
 }

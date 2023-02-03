@@ -35,7 +35,7 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
         if(bindingResult.hasErrors()){
             return "member/login";
         }
-        Member loginMember=loginService.login(memberDto.getLoginId(),memberDto.getPassword());
+        MemberDto loginMember=loginService.login(memberDto.getLoginId(),memberDto.getPassword());
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");
@@ -47,8 +47,8 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
     }
 
     @GetMapping("/signup")
-    public String signupForm(MemberDto member, Model model){
-        model.addAttribute("member",member);
+    public String signupForm(MemberDto memberDto, Model model){
+        model.addAttribute("member",memberDto);
         return "member/signup";
     }
 
@@ -58,8 +58,6 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
             return "member/signup";
         }
         //회원 확인하고
-
-
         memberService.save(memberDto);
         return "redirect:/";
     }

@@ -27,16 +27,17 @@ public class AreaController {
     private final AreaService areaService;
 
     @GetMapping("/area")
-    public String clothesForm(@Login MemberDto loginMember, AreaDto area, Model model){
-        model.addAttribute("Area",area);
+    public String clothesForm(@Login MemberDto memberDto, AreaDto area, Model model){
+        model.addAttribute("areaDto",area);
+        model.addAttribute("memberDto",memberDto);
         return "weather/area";
     }
 
     @PostMapping("/area")
-    public String clothes(AreaDto area ,HttpServletRequest request){//id 값을 받아서 수정?
+    public String clothes(MemberDto memberDto,AreaDto area ,HttpServletRequest request){//id 값을 받아서 수정?
 
-        HttpSession session = request.getSession();
-        areaService.save(area,(Member) session.getAttribute(SessionConst.LOGIN_MEMBER));//area 저장을 id로 보고 저장해야한다.
+
+        areaService.save(area,memberDto);//area 저장을 id로 보고 저장해야한다.
 
         return "redirect:/";
     }

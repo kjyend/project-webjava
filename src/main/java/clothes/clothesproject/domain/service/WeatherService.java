@@ -24,11 +24,14 @@ public class WeatherService {
 
     private final MemberRepository memberRepository;
 
-    public void save(Long tmp,String pcp,String sky){//dto를 통해서 저장하는데
+    public void save(MemberDto memberDto,Long tmp,String pcp,String sky){//dto를 통해서 저장하는데
+        Member member = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
+
         Weather weather = Weather.builder()
                 .temp(tmp)
                 .pcp(pcp)
                 .sky(sky)
+                .member(member)
                 .build();
 
         weatherRepository.save(weather);
@@ -36,7 +39,6 @@ public class WeatherService {
     public void changeWeather(MemberDto memberDto, Long tmp, String pcp, String sky, WeatherDto weatherDto
     ){
         Member member = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
-
         Weather weather = weatherRepository.findById(weatherDto.getId()).orElseThrow(() -> new IllegalArgumentException("원하는 weather 값이 없습니다."));
 
         weather.builder()

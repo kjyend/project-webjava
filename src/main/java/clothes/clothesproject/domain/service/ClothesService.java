@@ -15,14 +15,13 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@Slf4j
 public class ClothesService {
 
     private final ClothesRepository clothesRepository;
     private final WeatherRepository weatherRepository;
 
     @Transactional
-    public void compareTemp(ClothesDto clothes,Long temp){
+    public void compareTemp(Long temp){
         //if문으로 weather에 clothes잇으면 ㄱㅊ 아니면 if문에 들가서 새로 만들기
 
         if(temp<6){//온도에 맞는 옷 넣어주고 저장하면 끝임

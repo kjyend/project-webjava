@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,9 +25,10 @@ public class ClothesController {
     private final WeatherService weatherService;
 
     @GetMapping("/clothes")
-    public String editForm(@Login MemberDto memberDto, ClothesDto clothes, WeatherDto weatherDto){
+    public String editForm(@Login MemberDto memberDto, @RequestParam("temp") Long temp){
         //service를 통해서 if문으로 비교하고 다른 정보의 db를 저장한다.
-
+        log.info("=={}",temp);
+        clothesService.compareTemp(temp);
         return "weather/clothes";
     }
 }

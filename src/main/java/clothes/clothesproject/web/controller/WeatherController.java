@@ -62,9 +62,13 @@ public class WeatherController { //데이터값 html
                 weatherService.changeWeather(memberDto, tmp, pcp, sky, weather);
             }
         }
-        model.addAttribute("weather", weather);
+        model.addAttribute("temp", tmp);
+        model.addAttribute("pcp", pcp);
+        model.addAttribute("sky", sky);
         return "weather/weather";
     }
+
+
 
 
     public String jsonString() throws Exception {//지역값을 밖에서 받아와야한다.

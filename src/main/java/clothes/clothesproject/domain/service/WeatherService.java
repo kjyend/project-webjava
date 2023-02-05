@@ -25,7 +25,7 @@ public class WeatherService {
     private final MemberRepository memberRepository;
 
     public void save(MemberDto memberDto,Long tmp,String pcp,String sky){//dto를 통해서 저장하는데
-        Member member = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
+        Member member = memberRepository.findByLoginId(memberDto.getLoginId()).orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
 
         Weather weather = Weather.builder()
                 .temp(tmp)

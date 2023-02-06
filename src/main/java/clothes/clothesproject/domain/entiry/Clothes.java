@@ -13,7 +13,8 @@ public class Clothes {
 
     private String clothe;
 
-    @OneToOne(mappedBy = "clothes",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name="weather")
     private Weather weather;
 
     @Builder

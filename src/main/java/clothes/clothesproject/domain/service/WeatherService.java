@@ -49,9 +49,6 @@ public class WeatherService {
                 .build();
         weatherRepository.save(weather);
     }
-//    public void saveClothes(WeatherDto weatherDto, ClothesDto clothesDto){
-//        weatherDto.builder.
-//        weatherRepository.save(weather);
-//    }
+
 
 }

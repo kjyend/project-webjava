@@ -24,114 +24,44 @@ public class ClothesService {
     public void compareTemp(Long temp){
         //if문으로 weather에 clothes잇으면 ㄱㅊ 아니면 if문에 들가서 새로 만들기
 
+        Clothes clothes= null;
+
         if(temp<6){//온도에 맞는 옷 넣어주고 저장하면 끝임
 
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("패딩")
+            clothes = Clothes.builder()
+                    .clothe("패딩, 두꺼운 코트, 목도리, 기모제품")
                     .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("두꺼운 코트")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("목도리")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("기모제품")
-                    .build();
-
         }else if(temp<10){
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("코트")
+            clothes = Clothes.builder()
+                    .clothe("코트, 가죽 재킷, 니트, 두꺼운 바지")
                     .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("가죽 재킷")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("니트")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("두꺼운 바지")
-                    .build();
-        }else if(temp<12){
 
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("재킷")
-                    .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("트랜치코트")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("니트")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("청바지")
+        }else if(temp<12){
+            clothes = Clothes.builder()
+                    .clothe("재킷, 트랜치코트, 니트, 청바지")
                     .build();
         }else if(temp<17){
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("얇은 재킷")
-                    .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("가디건")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("맨투맨")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("니트")
+            clothes = Clothes.builder()
+                    .clothe("얇은 재킷, 가디건, 맨투맨, 니트")
                     .build();
         }else if(temp<20){
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("얇은 니트")
-                    .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("얇은 재킷")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("가디건")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("맨투맨")
+            clothes = Clothes.builder()
+                    .clothe("얇은 니트, 얇은 재킷, 가디건, 맨투맨")
                     .build();
         }else if(temp<23){
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("긴팔티")
-                    .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("얇은 가디건")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("면바지")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("청바지")
+            clothes = Clothes.builder()
+                    .clothe("긴팔티, 얇은 가디건, 면바지, 청바지")
                     .build();
         }else if(temp<26){
 
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("반팔티")
-                    .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("얇은 셔츠")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("반바지")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("면바지")
+            clothes = Clothes.builder()
+                    .clothe("반팔티, 얇은 셔츠, 반바지, 면바지")
                     .build();
         }else{
-            Clothes clothes1 = Clothes.builder()
-                    .clothe("민소매티")
-                    .build();
-            Clothes clothes2 = Clothes.builder()
-                    .clothe("반바지")
-                    .build();
-            Clothes clothes3 = Clothes.builder()
-                    .clothe("반팔티")
-                    .build();
-            Clothes clothes4 = Clothes.builder()
-                    .clothe("치마")
+            clothes = Clothes.builder()
+                    .clothe("민소매티, 반바지, 반팔티, 치마")
                     .build();
         }
+        clothesRepository.save(clothes);
     }
 }

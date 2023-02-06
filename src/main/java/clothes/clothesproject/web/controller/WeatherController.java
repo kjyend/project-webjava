@@ -48,7 +48,7 @@ public class WeatherController { //데이터값 html
     private final WeatherService weatherService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login MemberDto memberDto, WeatherDto weather, AreaDto areaDto, Model model) throws Exception {
+    public String weatherForm(@Login MemberDto memberDto, WeatherDto weather, Model model) throws Exception {
 
 //        weather.getMember()==null
 //        if(loginMember.getArea()!=null) {//경도 위도가 없는 경우 넣어준다.
@@ -62,6 +62,8 @@ public class WeatherController { //데이터값 html
                 weatherService.changeWeather(memberDto, tmp, pcp, sky, weather);
             }
         }
+
+        model.addAttribute("weatherId",weather.getId());
         model.addAttribute("temp", tmp);
         model.addAttribute("pcp", pcp);
         model.addAttribute("sky", sky);

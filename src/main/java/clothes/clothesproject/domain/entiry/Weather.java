@@ -19,8 +19,7 @@ public class Weather {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToOne
-    @JoinColumn(name = "clothes_id")
+    @OneToOne(mappedBy = "weather",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Clothes clothes;
 
     @Builder

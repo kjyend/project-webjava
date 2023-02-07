@@ -44,33 +44,26 @@ public class WeatherController { //데이터값 html
     private String sky; //하늘 상태
     private String lat="60"; // 위도 nx 기본 60
     private String har="127"; // 경도 ny 기본 127
-    //dto 해야한다.
     private final WeatherService weatherService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
     public String weatherForm(@Login MemberDto memberDto, WeatherDto weather, Model model) throws Exception {
 
-//        weather.getMember()==null
-//        if(loginMember.getArea()!=null) {//경도 위도가 없는 경우 넣어준다.
-//            lat=areaService.latHave(loginMember.getId(),weather.get);
-//            har=areaService.harHave(loginMember.getId());
-//        }
+        Long weatherId=null;
         if(jsonString().equals("00")){
             if(weather.getMember()==null) {
-                weatherService.save(memberDto, tmp,pcp,sky);
+                weatherId=weatherService.save(memberDto, tmp,pcp,sky);
             }else{
-                weatherService.changeWeather(memberDto, tmp, pcp, sky, weather);
+                weatherId=weatherService.changeWeather(memberDto, tmp, pcp, sky, weather);
             }
         }
 
-        model.addAttribute("weatherId",weather.getId());
+        model.addAttribute("weatherId",weatherId);
         model.addAttribute("temp", tmp);
         model.addAttribute("pcp", pcp);
         model.addAttribute("sky", sky);
         return "weather/weather";
     }
-
-
 
 
     public String jsonString() throws Exception {//지역값을 밖에서 받아와야한다.

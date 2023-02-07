@@ -23,17 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ClothesController {
 
     private final ClothesService clothesService;
-    private final WeatherService weatherService;
 
     @GetMapping("/clothes")
-    public String editForm(@Login MemberDto memberDto, @RequestParam("temp") Long temp,@RequestParam("weatherId") Long id,
-                           ClothesDto clothesDto,Model model){
-        //service를 통해서 if문으로 비교하고 다른 정보의 db를 저장한다.
-        log.info("=={}",temp);
-        log.info("111==={}",id);
-
-        clothesService.compareTemp(temp);
-        model.addAttribute("clothes", clothesDto);
+    public String editForm(@Login MemberDto memberDto, @RequestParam("temp") Long temp,@RequestParam("weatherId") Long id,Model model){
+        String clothes = clothesService.compareTemp(temp,id);
+        model.addAttribute("clothes", clothes);
         return "weather/clothes";
     }
 }

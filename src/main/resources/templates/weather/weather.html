@@ -39,7 +39,7 @@
 <div class="button-aperture">
     <form action="clothes" method="get">
         <input type="hidden" name="temp" th:value="${temp}">
-        <input type="hidden" th:value="${weatherId}">
+        <input type="hidden" name="weatherId" th:value="${weatherId}">
         <button type="submit">날씨에 맞는 옷 추천</button>
     </form>
 </div>

@@ -18,8 +18,9 @@ public class Clothes {
     private Weather weather;
 
     @Builder
-    public Clothes(Long id, String clothe) {
+    public Clothes(Long id, String clothe, Weather weather) {
         this.id = id;
         this.clothe = clothe;
+        this.weather = weather;
     }
 }

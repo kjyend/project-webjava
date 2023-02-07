@@ -24,10 +24,8 @@
     </div>
 </div>
 <div class="button-mid">
-    <form action="" th:object="${clothes}">
-        <div th:text="|추천하는 옷 : *{clothe}|"></div>
-        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/}'|" >취소</button>
-    </form>
+    <div th:text="|추천하는 옷 : ${clothes}|"></div>
+    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/}'|" >취소</button>
 </div>
 </body>
 </html>

@@ -15,20 +15,23 @@ public class Weather {
     private String pcp;//강수가 있는지
     private String sky;//하늘 상태
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+ //   @ManyToOne
+ //   @JoinColumn(name = "member_id")
+ //   private Member member;
+    @OneToOne
+    @JoinColumn(name = "area_id")
+    private Area area;
 
     @OneToOne(mappedBy = "weather",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Clothes clothes;
 
     @Builder
-    public Weather(Long id, Long temp, String pcp, String sky, Member member, Clothes clothes) {
+    public Weather(Long id, Long temp, String pcp, String sky,Area area) {
         this.id = id;
         this.temp = temp;
         this.pcp = pcp;
         this.sky = sky;
-        this.member = member;
-        this.clothes = clothes;
+    //    this.member = member;
+        this.area=area;
     }
 }

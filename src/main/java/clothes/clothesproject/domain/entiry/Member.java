@@ -22,8 +22,8 @@ public class Member {
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Area> area;
 
-    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Weather> weather;
+//    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//    private List<Weather> weather;
 
     @Builder
     public Member(Long id, String loginId, String password, String name, String dob) {

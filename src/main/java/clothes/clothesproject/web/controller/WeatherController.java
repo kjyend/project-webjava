@@ -42,8 +42,8 @@ public class WeatherController { //데이터값 html
     private Long tmp; //온도
     private String pcp; //강수 없음
     private String sky; //하늘 상태
-    private String lat="60"; // 위도 nx 기본 60
-    private String har="127"; // 경도 ny 기본 127
+    private static String lat="60"; // 위도 nx 기본 60
+    private static String har="127"; // 경도 ny 기본 127
     private final WeatherService weatherService;
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
@@ -52,9 +52,9 @@ public class WeatherController { //데이터값 html
         Long weatherId=null;
         if(jsonString().equals("00")){
             if(weather.getMember()==null) {
-                weatherId=weatherService.save(memberDto, tmp,pcp,sky);
+                weatherId=weatherService.save(lat,har, tmp,pcp,sky);
             }else{
-                weatherId=weatherService.changeWeather(memberDto, tmp, pcp, sky, weather);
+                weatherId=weatherService.changeWeather(lat,har, tmp, pcp, sky, weather);
             }
         }
 

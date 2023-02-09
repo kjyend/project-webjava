@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,11 +35,8 @@ public class AreaController {
     }
 
     @PostMapping("/area")
-    public String clothes(MemberDto memberDto,AreaDto area ,HttpServletRequest request){//id 값을 받아서 수정?
-
-
+    public String clothes(MemberDto memberDto, AreaDto area , RedirectAttributes redirectAttributes){//id 값을 받아서 수정?
         areaService.save(area,memberDto);//area 저장을 id로 보고 저장해야한다.
-
         return "redirect:/";
     }
 }

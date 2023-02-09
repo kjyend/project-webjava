@@ -14,7 +14,7 @@ public class Clothes {
     private String clothe;
 
     @OneToOne
-    @JoinColumn(name="weather")
+    @JoinColumn(name="weather_id")
     private Weather weather;
 
     @Builder

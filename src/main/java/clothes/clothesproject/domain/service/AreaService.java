@@ -30,6 +30,12 @@ public class AreaService {
         areaRepository.save(area);
     }
 
+//    public Long checkMember(MemberDto memberDto){
+//        Member member = memberRepository.findByLoginId(memberDto.getLoginId()).filter(m -> m.getPassword().equals(memberDto.getPassword())).orElse(null);
+//       areaRepository.findByMember(member)
+//        return
+//    }
+
 //    public String latHave(Long id){
 //        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
 //        return one.getArea().getLatitude();

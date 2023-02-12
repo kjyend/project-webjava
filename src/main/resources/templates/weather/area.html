@@ -85,8 +85,8 @@
 
 <div class="button-low3">
     <form action="" th:object="${areaDto}" method="post">
-        <input placeholder="위도(정수)" th:field="*{latitude}">
-        <input placeholder="경도(정수)" th:field="*{hardness}">
+        <input name="latitude" placeholder="위도(정수)" th:field="*{latitude}" required>
+        <input name="hardness" placeholder="경도(정수)" th:field="*{hardness}" required>
         <input type="hidden" id="loginId" th:field="${memberDto.loginId}">
         <button type="submit" class="btn btn-primary">변경하기</button>
     </form>

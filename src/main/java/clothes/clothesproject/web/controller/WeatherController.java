@@ -6,6 +6,7 @@ import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.entiry.Area;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.entiry.Weather;
+import clothes.clothesproject.domain.repository.MemberRepository;
 import clothes.clothesproject.domain.service.AreaService;
 import clothes.clothesproject.domain.service.MemberService;
 import clothes.clothesproject.domain.service.WeatherService;
@@ -39,15 +40,21 @@ import java.util.*;
 public class WeatherController { //데이터값 html
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
-    private Long tmp; //온도
-    private String pcp; //강수 없음
-    private String sky; //하늘 상태
-    private static String lat="60"; // 위도 nx 기본 60
-    private static String har="127"; // 경도 ny 기본 127
+    private static Long tmp; //온도
+    private static String pcp; //강수 없음
+    private static String sky; //하늘 상태
+    private static String lat; // 위도 nx 기본 60
+    private static String har; // 경도 ny 기본 127
+
     private final WeatherService weatherService;
+    private final AreaService areaService;
+
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login MemberDto memberDto, WeatherDto weather, Model model) throws Exception {
+    public String weatherForm(@Login MemberDto memberDto, WeatherDto weather, AreaDto areaDto, Model model) throws Exception {
+
+        lat=areaDto.getLatitude();
+        har=areaDto.getHardness();
 
         Long weatherId=null;
         if(jsonString().equals("00")){

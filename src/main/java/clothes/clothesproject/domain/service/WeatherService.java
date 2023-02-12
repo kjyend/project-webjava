@@ -37,8 +37,6 @@ public class WeatherService {
                 .build();
         Area areaCheck = areaRepository.findByLatitude(area.getLatitude()).filter(a -> a.getHardness().equals(area.getHardness())).orElse(null);
 
-        log.info("={}",areaCheck);
-        log.info("=={}",lat);
         Weather weather = Weather.builder()
                 .temp(tmp)
                 .pcp(pcp)

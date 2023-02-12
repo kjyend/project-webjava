@@ -37,6 +37,8 @@ public class AreaController {
     @PostMapping("/area")
     public String clothes(MemberDto memberDto, AreaDto area , RedirectAttributes redirectAttributes){//id 값을 받아서 수정?
         areaService.save(area,memberDto);//area 저장을 id로 보고 저장해야한다.
-        return "redirect:/";
+        redirectAttributes.addAttribute("hardness",area.getHardness());
+        redirectAttributes.addAttribute("latitude",area.getLatitude());
+        return "redirect:/weather";
     }
 }

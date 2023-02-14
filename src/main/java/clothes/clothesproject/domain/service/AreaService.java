@@ -30,24 +30,4 @@ public class AreaService {
         areaRepository.save(area);
     }
 
-//    public Long checkMember(MemberDto memberDto){
-//        Member member = memberRepository.findByLoginId(memberDto.getLoginId()).filter(m -> m.getPassword().equals(memberDto.getPassword())).orElse(null);
-//       areaRepository.findByMember(member)
-//        return
-//    }
-
-//    public String latHave(Long id){
-//        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
-//        return one.getArea().getLatitude();
-//    }
-
-//    public String harHave(Long id){
-//        Member one = memberRepository.findById(id).orElseThrow(()->new IllegalArgumentException("회원이 없습니다."));
-//        return one.getArea().getHardness();
-//    }
-
-//    public void changeArea(Member member, AreaDto area){
-//        Area memberArea = member.getArea();
-//        area.setId(memberArea.getId());//나중에 repository 바꿔줘야한다.//       areaRepository.save(area);
-//    }
 }

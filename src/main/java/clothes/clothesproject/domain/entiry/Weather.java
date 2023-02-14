@@ -15,9 +15,6 @@ public class Weather {
     private String pcp;//강수가 있는지
     private String sky;//하늘 상태
 
- //   @ManyToOne
- //   @JoinColumn(name = "member_id")
- //   private Member member;
     @OneToOne
     @JoinColumn(name = "area_id")
     private Area area;
@@ -31,7 +28,6 @@ public class Weather {
         this.temp = temp;
         this.pcp = pcp;
         this.sky = sky;
-    //    this.member = member;
         this.area=area;
     }
 }

@@ -1,16 +1,12 @@
 package clothes.clothesproject.domain.service;
 
-import clothes.clothesproject.domain.dto.ClothesDto;
 import clothes.clothesproject.domain.entiry.Clothes;
 import clothes.clothesproject.domain.entiry.Weather;
 import clothes.clothesproject.domain.repository.ClothesRepository;
 import clothes.clothesproject.domain.repository.WeatherRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @Transactional

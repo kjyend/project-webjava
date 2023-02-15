@@ -1,7 +1,6 @@
 package clothes.clothesproject.web.argumentresolver;
 
 import clothes.clothesproject.domain.dto.MemberDto;
-import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.web.SessionConst;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;

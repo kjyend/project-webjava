@@ -1,7 +1,6 @@
 package clothes.clothesproject.web.controller;
 
 import clothes.clothesproject.domain.dto.MemberDto;
-import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.service.LoginService;
 import clothes.clothesproject.domain.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor

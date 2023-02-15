@@ -3,25 +3,17 @@ package clothes.clothesproject.web.controller;
 import clothes.clothesproject.domain.dto.AreaDto;
 import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.dto.WeatherDto;
-import clothes.clothesproject.domain.entiry.Area;
-import clothes.clothesproject.domain.entiry.Member;
-import clothes.clothesproject.domain.entiry.Weather;
-import clothes.clothesproject.domain.repository.MemberRepository;
 import clothes.clothesproject.domain.service.AreaService;
-import clothes.clothesproject.domain.service.MemberService;
 import clothes.clothesproject.domain.service.WeatherService;
-import clothes.clothesproject.web.SessionConst;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,7 +28,6 @@ import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class WeatherController { //데이터값 html
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
@@ -137,15 +128,12 @@ public class WeatherController { //데이터값 html
 
         JSONObject itemArray1= (JSONObject) item.get(0); // 온도
         tmp = Long.valueOf((String) itemArray1.get("fcstValue"));
-        log.info("tmp={}",tmp);
 
         JSONObject itemArray2= (JSONObject) item.get(9); // 강수가 있는지 없는지
         pcp= (String) itemArray2.get("fcstValue");
-        log.info("pcp={}",pcp);
 
         JSONObject itemArray3= (JSONObject) item.get(5); // 하늘 상태
         sky= (String) itemArray3.get("fcstValue");
-        log.info("sky={}",sky);
 
         return "00";
     }

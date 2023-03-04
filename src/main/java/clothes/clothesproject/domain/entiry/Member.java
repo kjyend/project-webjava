@@ -1,5 +1,6 @@
 package clothes.clothesproject.domain.entiry;
 
+import clothes.clothesproject.domain.dto.LoginDto;
 import clothes.clothesproject.domain.dto.MemberDto;
 import lombok.*;
 
@@ -32,10 +33,13 @@ public class Member {
         this.dob = dob;
     }
 
-    public MemberDto toMemberDto() {
-        return MemberDto.builder()
+
+    public LoginDto toLoginDto(){
+        return LoginDto.builder()
+                .id(id)
                 .loginId(loginId)
                 .password(password)
                 .build();
     }
+
 }

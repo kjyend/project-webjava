@@ -1,5 +1,6 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.dto.LoginDto;
 import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.service.LoginService;
 import clothes.clothesproject.domain.service.MemberService;
@@ -22,18 +23,18 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String loginForm(MemberDto memberDto,Model model){
+    public String loginForm(LoginDto memberDto, Model model){
         model.addAttribute("member",memberDto);
         return "member/login";
     }
 
     @PostMapping("/login")
-    public String login(@Validated MemberDto memberDto, BindingResult bindingResult,
+    public String login(@Validated LoginDto memberDto, BindingResult bindingResult,
                         @RequestParam(defaultValue = "/") String redirectULR, HttpServletRequest request){// dto로 바꿔야한다.
         if(bindingResult.hasErrors()){
             return "member/login";
         }
-        MemberDto loginMember=loginService.login(memberDto.getLoginId(),memberDto.getPassword());
+        LoginDto loginMember=loginService.login(memberDto.getLoginId(),memberDto.getPassword());
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");

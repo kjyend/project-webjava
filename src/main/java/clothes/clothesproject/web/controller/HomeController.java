@@ -1,5 +1,6 @@
 package clothes.clothesproject.web.controller;
 
+import clothes.clothesproject.domain.dto.LoginDto;
 import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.web.argumentresolver.Login;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String home(@Login MemberDto memberDto, Model model){
+    public String home(@Login LoginDto memberDto, Model model){
         model.addAttribute("member",memberDto);
         if(memberDto==null){
             return "home";

@@ -1,6 +1,6 @@
 package clothes.clothesproject.web.argumentresolver;
 
-import clothes.clothesproject.domain.dto.MemberDto;
+import clothes.clothesproject.domain.dto.LoginDto;
 import clothes.clothesproject.web.SessionConst;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -16,7 +16,7 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
     public boolean supportsParameter(MethodParameter parameter) {
 
         boolean hasLoginAnnotation = parameter.hasParameterAnnotation(Login.class);
-        boolean hasMemberType = MemberDto.class.isAssignableFrom(parameter.getParameterType());
+        boolean hasMemberType = LoginDto.class.isAssignableFrom(parameter.getParameterType());
         return hasLoginAnnotation && hasMemberType;
     }
 

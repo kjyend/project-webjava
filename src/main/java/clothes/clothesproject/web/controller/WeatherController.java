@@ -1,7 +1,7 @@
 package clothes.clothesproject.web.controller;
 
 import clothes.clothesproject.domain.dto.AreaDto;
-import clothes.clothesproject.domain.dto.MemberDto;
+import clothes.clothesproject.domain.dto.LoginDto;
 import clothes.clothesproject.domain.dto.WeatherDto;
 import clothes.clothesproject.domain.service.AreaService;
 import clothes.clothesproject.domain.service.WeatherService;
@@ -42,14 +42,14 @@ public class WeatherController { //데이터값 html
 
 
     @GetMapping("/weather") // 일단 값이 나온다. 하지만 html 확인할것
-    public String weatherForm(@Login MemberDto memberDto, WeatherDto weather, AreaDto areaDto, Model model) throws Exception {
+    public String weatherForm(@Login LoginDto memberDto, WeatherDto weather, AreaDto areaDto, Model model) throws Exception {
 
         lat=areaDto.getLatitude();
         har=areaDto.getHardness();
 
         Long weatherId=null;
         if(jsonString().equals("00")){
-            if(weather.getMember()==null) {
+            if(areaDto.getMember()==null) {
                 weatherId=weatherService.save(lat,har, tmp,pcp,sky);
             }else{
                 weatherId=weatherService.changeWeather(lat,har, tmp, pcp, sky, weather);

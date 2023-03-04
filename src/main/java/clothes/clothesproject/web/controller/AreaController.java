@@ -1,6 +1,7 @@
 package clothes.clothesproject.web.controller;
 
 import clothes.clothesproject.domain.dto.AreaDto;
+import clothes.clothesproject.domain.dto.LoginDto;
 import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.service.AreaService;
 import clothes.clothesproject.web.argumentresolver.Login;
@@ -19,7 +20,7 @@ public class AreaController {
     private final AreaService areaService;
 
     @GetMapping("/area")
-    public String clothesForm(@Login MemberDto memberDto, AreaDto area, Model model){
+    public String clothesForm(@Login LoginDto memberDto, AreaDto area, Model model){
         model.addAttribute("areaDto",area);
         model.addAttribute("memberDto",memberDto);
         return "weather/area";

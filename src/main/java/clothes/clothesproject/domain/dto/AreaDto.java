@@ -1,5 +1,6 @@
 package clothes.clothesproject.domain.dto;
 
+import clothes.clothesproject.domain.entiry.Member;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,6 +10,6 @@ public class AreaDto {
 
     private String latitude;//위도 nx
     private String hardness;//경도 ny
-
+    private Member member;
 
 }

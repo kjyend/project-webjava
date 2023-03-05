@@ -8,6 +8,7 @@ import clothes.clothesproject.domain.service.WeatherService;
 import clothes.clothesproject.web.argumentresolver.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,7 +26,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class WeatherController { //데이터값 html
@@ -48,12 +49,10 @@ public class WeatherController { //데이터값 html
         har=areaDto.getHardness();
 
         Long weatherId=null;
+
+
         if(jsonString().equals("00")){
-            if(areaDto.getMember()==null) {
-                weatherId=weatherService.save(lat,har, tmp,pcp,sky);
-            }else{
-                weatherId=weatherService.changeWeather(lat,har, tmp, pcp, sky, weather);
-            }
+            weatherId=weatherService.save(lat,har, tmp,pcp,sky);
         }
 
         model.addAttribute("weatherId",weatherId);

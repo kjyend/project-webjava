@@ -8,10 +8,11 @@ import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.repository.AreaRepository;
 import clothes.clothesproject.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -21,21 +22,18 @@ public class AreaService {
     private final MemberRepository memberRepository;
 
     public void save(AreaDto areaDto, MemberDto memberDto){ // 지역 수정 저장
-        Area area = null;
         Member member = memberRepository.findByLoginId(memberDto.getLoginId()).orElseThrow(() -> new IllegalArgumentException("회원이 없습니다."));
         Area check = areaRepository.findByMember(member).orElse(null);
+        Area area=null;
         if(check==null) {
-             area = Area.builder()
+            area = Area.builder()
                     .hardness(areaDto.getHardness())
                     .latitude(areaDto.getLatitude())
                     .member(member)
                     .build();
         }else{
-            area=check.builder()
-                    .latitude(areaDto.getLatitude())
-                    .hardness(areaDto.getHardness())
-                    .member(member)
-                    .build();
+            area = areaRepository.findById(areaDto.getId()).orElseThrow(() -> new IllegalArgumentException("해당 지역이 없습니다."));
+            area.update(areaDto.getLatitude(),areaDto.getHardness());
         }
         areaRepository.save(area);
     }

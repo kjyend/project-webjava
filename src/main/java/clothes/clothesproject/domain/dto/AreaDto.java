@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public class AreaDto {
 
+    private Long id;
     private String latitude;//위도 nx
     private String hardness;//경도 ny
     private Member member;

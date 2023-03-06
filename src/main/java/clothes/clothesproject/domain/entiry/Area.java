@@ -29,4 +29,8 @@ public class Area { //area controller에서 service를 통해서 위치정보를
         this.hardness = hardness;
         this.member = member;
     }
+    public void update(String latitude,String hardness){
+        this.latitude=latitude;
+        this.hardness=hardness;
+    }
 }

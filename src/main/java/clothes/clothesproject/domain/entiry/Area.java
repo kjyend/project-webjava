@@ -3,6 +3,7 @@ package clothes.clothesproject.domain.entiry;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,8 +20,8 @@ public class Area { //area controller에서 service를 통해서 위치정보를
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToOne(mappedBy = "area",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Weather weather;
+    @OneToMany(mappedBy = "area",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Weather> weather;
 
     @Builder
     public Area(Long id, String latitude, String hardness, Member member) {

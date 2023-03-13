@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,9 @@ import java.util.*;
 @Controller
 @RequiredArgsConstructor
 public class WeatherController { //데이터값 html
+
+    @Value("weather.path")
+    String key;
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.
     private static Long tmp; //온도
@@ -90,7 +94,7 @@ public class WeatherController { //데이터값 html
 
         String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 
-        String serviceKey="SOLuYRh8xqz5eiyULHRGa7argcZ5hB4drsGC1LFh91Og5tZwMs4Jk34TctQelxAph%2BlwkFPoh%2F9oAcB0XM8PHQ%3D%3D";
+        String serviceKey=key;
 
         StringBuilder urlBuilder = new StringBuilder(apiUrl);
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "="+serviceKey);

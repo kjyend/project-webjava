@@ -32,7 +32,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class WeatherController { //데이터값 html
 
-    @Value("weather.path")
+    @Value("${weather.path}")
     String key;
 
     //weather 여기에서만 사용하는 String 3개정도 두고 model에 저장하면서 해야한다.

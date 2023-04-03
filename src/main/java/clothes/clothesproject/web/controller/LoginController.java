@@ -38,7 +38,7 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
 
         if(loginMember==null){
             bindingResult.reject("loginFail","아이디 또는 비밀번호가 맞지 않습니다.");
-            return "member/login";
+            return "redirect:/login";
         }
         HttpSession session=request.getSession();
         session.setAttribute("loginMember",loginMember);
@@ -53,9 +53,15 @@ public class LoginController {//로그인+ 회원가입 안됨 걍 회원가입�
 
     @PostMapping("/signup")//setter가 없어서 null로 저장된다. setter가 있으면 그냥 저장이 된다. 지금 setter를 안함
     public String save(@Validated MemberDto memberDto, BindingResult bindingResult){//Member > MemberDto로 변경해야함
+
         if(bindingResult.hasErrors()){
             return "member/signup";
         }
+        MemberDto checkMember = loginService.loginIdCheck(memberDto);
+        if (checkMember == null) {
+            return "redirect:/signup";
+        }
+
         //회원 확인하고
         memberService.save(memberDto);
         return "redirect:/";

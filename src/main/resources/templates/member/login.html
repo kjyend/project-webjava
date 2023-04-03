@@ -41,7 +41,7 @@
     <form class="form-signin" action="" th:object="${member}" method="post">
         <div>
             <label for="loginId" class="form-label"></label>
-            <input type="email" class="form-control"  id="loginId" th:field="*{loginId}" aria-describedby="emailHelp" placeholder="id" required>
+            <input type="email" class="form-control"  id="loginId" th:field="*{loginId}" aria-describedby="emailHelp" th:errorclass="field-error" placeholder="id" required>
         </div>
         <div>
             <label for="password" class="form-label"></label>

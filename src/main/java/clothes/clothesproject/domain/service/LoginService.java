@@ -2,6 +2,7 @@ package clothes.clothesproject.domain.service;
 
 
 import clothes.clothesproject.domain.dto.LoginDto;
+import clothes.clothesproject.domain.dto.MemberDto;
 import clothes.clothesproject.domain.entiry.Member;
 import clothes.clothesproject.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,13 @@ public class LoginService {
         }else{
             return null;
         }
+    }
+
+    public MemberDto loginIdCheck(MemberDto memberDto) {
+        boolean present = memberRepository.findByLoginId(memberDto.getLoginId()).isPresent();
+        if (present != true) {
+            return memberDto;
+        }
+        return null;
     }
 }
